@@ -1,5 +1,5 @@
 {
-  "name": "fastforward",
+  "name": "fastforward/fastforward",
   "description": "A template for building web applications - part of the Fast Forward Family",
   "type": "library",
   "license": "MIT",
@@ -14,9 +14,7 @@
   ],
   "require": {
     "php": ">=7.2",
-    "fastforward/data-structures": "^1.0.0",
-    "fastforward/factories": "^1.0.0",
-    "fastforward/utils": "^1.0.0"
+    "fastforward/factories": "^1.0.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^8"
