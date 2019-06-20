@@ -23,13 +23,13 @@ More features will follow (see the Road Map section below).
 # A Warning before you start
 
 **FF** is highly opinionated and depends on a bunch of conventions! So be sure to consult the documentation 
-before deciding to develop your application based on **FF**.
+before deciding to develop your application based on **FF**.  
 But if you do **FF** ensures a minimal amount of setup, letting you concentrate your efforts on your business logic
-instead of soe framework configuration.
+instead of some framework configuration.
 
 # Dependencies
 
-- FF Family
+- **Fast Forward Family**
 
   **FF** makes heavy usage of the **Fast Forward Family** components, a collection of independent components providing
   generic implementations (like data structures of design patterns) used by many of **FF**'s features.
@@ -129,7 +129,7 @@ For convenience reasons there is a shorthand class `SF` that lets you retrieve o
     
     /** @var EventBroker $eventBroker */
     /** @var MyService $myService */
-    list ($eventBroker, $myService) = SF::i()->get('Events\EventBroker', MyService');
+    list ($eventBroker, $myService) = SF::i()->get('Events\EventBroker', 'MyService');
      
 
 ## Extending built-in FF Services  
