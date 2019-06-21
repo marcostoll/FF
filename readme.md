@@ -16,7 +16,8 @@ fast and easy. It addresses the common tasks and provides configurable and/or ex
 to use.
 
 Currently **FF** is composed of the following features:
-1. Services and a Service Factory
+1. Services and the Service Factory
+2. Events and the Event Broker
 
 More features will follow (see the Road Map section below).
 
@@ -59,7 +60,7 @@ of certain domain. Common attributes of services should be
 ## Writing services
 
 [**CONVENTION**] Service classes extend `FF\Services\AbstractService`.  
-[**CONVENTION**] Services should be located in your project's `MyProject\Services` namespace (or any sub namespace 
+[**CONVENTION**] Services must be located in your project's `MyProject\Services` namespace (or any sub namespace 
 thereof) to be found by the `ServicesFactory`.  
 
 ***Example: Basic service implementation***
@@ -115,7 +116,7 @@ For convenience reasons there is a shorthand class `SF` that lets you retrieve o
 
 ***Example: Getting a single service***
 
-    use FF\Services\SF;
+    use FF\Factories\SF;
     use MyProject\Services\MyService;
     
     /** @var MyService $myService */
@@ -123,8 +124,8 @@ For convenience reasons there is a shorthand class `SF` that lets you retrieve o
     
 ***Example: Getting multiple services at once***    
 
-    use FF\Services\Events\EventBroker;
-    use FF\Services\SF;
+    use FF\Factories\SF;
+        use FF\Services\Events\EventBroker;
     use MyProject\Services\MyService;
     
     /** @var EventBroker $eventBroker */
@@ -160,10 +161,115 @@ naming conventions and registering the `ServiceFactory` as shown in the **Bootst
     /** @var MyProject\Services\Runtime\ExceptionHandler $exceptionHandler */
     $exceptionHandler = SF::get('Runtime\ExceptionHandler');
     
+# Events and the Event Broker
+
+This feature provides a basic observer/observable pattern implementation. The key class is the `EventBroker`. Any
+other class may act as an observable by firing events using the `EventBroker`'s api. Other classes my act as observers
+by subscribing to specific types of events and being notified by the `EventBroker` in each time this type of event was
+fired. 
+
+## Firing Events
+
+If an observable wants to notify potential observers of notable changes it simply fires a suitable event using the
+`EventBroker`'s api.
+
+***Example: Fire an event***
+
+    use FF\Factories\SF;
+    use FF\Services\Events\EventBroker;
+
+    class MyExceptionHandler
+    {
+        /**
+         * Generic exception handler callback
+         *
+         * @param \Throwable $e
+         * @see http://php.net/set_exception_handler
+         */
+        public function onException(\Throwable $e)
+        {
+            try {
+                /** @var EventBroker $eventBroker */
+                $eventBroker = SF::i()->get('Events\EventBroker');
+                $eventBroker->fire('Runtime\Exception', $e);
+            } catch (\Exception $e) {
+                // do not handle exceptions thrown while
+                // processing the on-exception event
+            }
+        }
+    }
+    
+The `fire` method of the `EventBroker` uses the `EventsFactory` to instantiate the actual event object passing any
+additional argument provided to the event class's constructor.
+
+## Subscribing to Events
+
+A valid event handling method must meet the following requirements:
+
+- must be public
+- must not be static or abstract
+- accept exactly one argument: the event classes instance
+
+***Example: Subscribe to an event***
+
+    use FF\Events;
+    use FF\Factories\SF;
+    use FF\Services\Events\EventBroker;    
+
+    class MyErrorObserver
+    {
+        /**
+         * Event handling callback
+         *
+         * @param Runtime\Error $event
+        public function onRuntimeError(Runtime\Error $event)
+        {
+            // handle the Error event
+            var_dump(
+                $event->getErrNo(), 
+                $event->getErrMsg(), 
+                $event->getErrFile(),
+                $event->getErrLine()
+            );
+        }
+    }
+    
+    // subscribe to the Runtime\Error event
+    /** @var EventBroker $eventBroker */
+    $eventBroker = SF::i()->get('Events\EventBroker');
+    $eventBroker->subscribe([new MyErrorObserver, 'onRuntimeError'], 'Runtime\Error');
+        
+The subscription is bases on the class identifier of the event class. This is exactly the same string to use by the
+observable when firing the event. 
+
+## Defining Custom Events   
+
+[**CONVENTION**] Event classes extend `FF\Events\AbstractEvent`.  
+[**CONVENTION**] Events must be located in your project's `MyProject\Events` namespace (or any sub namespace 
+thereof) to be found by the `EventsFactory`.
+
+***Example: A custom event***
+
+    namespace MyProject\Events;
+    
+    use FF\Events\AbstractEvent;
+    
+    /**
+     * This event's class identifier would just be 'Logoff'
+     */
+    class Logoff extends AbstractEvent
+    {
+        /**
+         * Define constructor arguments (the event data) to meet your needs.
+         */
+        public function __construct($eventData)
+        {
+            var_dump($eventData);
+        }
+    }
 
 # Road map
 
-- Events
 - Runtime
 - Controllers
 - Sessions
