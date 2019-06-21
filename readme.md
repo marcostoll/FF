@@ -18,6 +18,7 @@ to use.
 Currently **FF** is composed of the following features:
 1. Services and the Service Factory
 2. Events and the Event Broker
+3. Runtime event handlers
 
 More features will follow (see the Road Map section below).
 
@@ -268,9 +269,45 @@ thereof) to be found by the `EventsFactory`.
         }
     }
 
+# Runtime event handlers
+
+This feature introduces three different handler classes for registering as callbacks to one of the three runtime events 
+of the php engine (error, exception, shutdown). The handlers translate php's core event information to **FF\Events** 
+event instances using the `EventBroker`.
+
+## Registering runtime event handlers
+
+All handlers implement the `RuntimeEventHandlerInterface` which lets you `register()` them on demand.  
+The `ErrorHandler` as well as the `ExceptionHandler` each are aware of any previous handlers that might have been 
+registered to their runtime events and let you restore the previous state. When registering shutdown handlers no
+information regarding the previous state is provided by php.
+
+## Subscribing to runtime events
+
+The handlers fire their own events containing all available event data which makes it easy for you to handle them by
+subscribing to the `FF\Events\EventBroker`.
+
+Example:
+
+    use FF\Events\Runtime\Error;
+    use FF\Factories\SF;
+    use FF\Services\Events\EventBroker;
+    use FF\Services\Runtime\ErrorHandler;
+    
+    // register the ErrorHandler
+    (new ErrorHandler())->register();
+    
+    /** @var EventBroker $eventBroker */
+    $eventBroker = SF::i()->get('events\EventBroker');
+    
+    // subscribe to the Runtime\Error event
+    $eventBroker->subscribe('Runtime\Error', function (Error $event) {
+        // handle the event data
+        var_dump($event->getErroNo(), $event->getErrMsg());  
+    }};  
+
 # Road map
 
-- Runtime
 - Controllers
 - Sessions
 - Security
