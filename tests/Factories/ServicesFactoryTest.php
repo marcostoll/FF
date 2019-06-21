@@ -8,12 +8,12 @@
  */
 declare(strict_types=1);
 
-namespace FF\Tests\Services\Factories {
+namespace FF\Tests\Factories {
 
     use FF\Factories\ClassLocators\BaseNamespaceClassLocator;
     use FF\Factories\Exceptions\ClassNotFoundException;
+    use FF\Factories\ServicesFactory;
     use FF\Services\Exceptions\ConfigurationException;
-    use FF\Services\Factories\ServicesFactory;
     use FF\Tests\Services\ServiceOne;
     use FF\Tests\Services\ServiceTwo;
     use PHPUnit\Framework\TestCase;

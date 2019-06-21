@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace FF\Services\Traits;
 
-use FF\Services\EventBroker;
-use FF\Services\Factories\SF;
+use FF\Factories\SF;
+use FF\Services\Events\EventBroker;
 
 /**
  * Trait EventEmitterTrait
@@ -35,7 +35,7 @@ trait EventEmitterTrait
         static $eventBroker = null;
 
         if (is_null($eventBroker)) {
-            $eventBroker = SF::i()->get('EventBroker');
+            $eventBroker = SF::i()->get('Events\EventBroker');
         }
 
         $eventBroker->fire($classIdentifier, ...$args);

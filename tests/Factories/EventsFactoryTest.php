@@ -8,10 +8,10 @@
  */
 declare(strict_types=1);
 
-namespace FF\Tests\Services\Factories;
+namespace FF\Tests\Factories;
 
 use FF\Factories\ClassLocators\BaseNamespaceClassLocator;
-use FF\Services\Factories\EventsFactory;
+use FF\Factories\EventsFactory;
 use PHPUnit\Framework\TestCase;
 
 /**

@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace FF\Services\Factories;
+namespace FF\Factories;
 
 /**
  * Class SF

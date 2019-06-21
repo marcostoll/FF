@@ -8,17 +8,16 @@
  */
 declare(strict_types=1);
 
-namespace FF\Services\Factories;
+namespace FF\Factories;
 
 use FF\Events\AbstractEvent;
-use FF\Factories\AbstractFactory;
 use FF\Factories\ClassLocators\BaseNamespaceClassLocator;
 use FF\Factories\ClassLocators\ClassLocatorInterface;
 
 /**
  * Class EventsFactory
  *
- * @package FF\Services\Factories
+ * @package FF\Factories
  */
 class EventsFactory extends AbstractFactory
 {

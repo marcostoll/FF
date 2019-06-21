@@ -8,13 +8,14 @@
  */
 declare(strict_types=1);
 
-namespace FF\Services;
+namespace FF\Services\Events;
 
 use FF\DataStructures\IndexedCollection;
 use FF\DataStructures\OrderedCollection;
 use FF\Events\AbstractEvent;
+use FF\Factories\EventsFactory;
 use FF\Factories\Exceptions\ClassNotFoundException;
-use FF\Services\Factories\EventsFactory;
+use FF\Services\AbstractService;
 
 /**
  * Class EventBroker
