@@ -88,7 +88,7 @@ class ServicesFactory extends AbstractSingletonFactory
      * Returns an array of service instances instead if two or more class identifiers were passed. The returned list
      * will ordered in the same way as the class identifier arguments have been passed.
      *
-     * @param string ...$classIdentifiers
+     * @param string[] $classIdentifiers
      * @return AbstractService|AbstractService[]
      * @throws ClassNotFoundException
      * @throws ConfigurationException
