@@ -8,18 +8,18 @@
  */
 declare(strict_types=1);
 
-namespace FF\Services;
+namespace FF\Factories;
 
-use FF\Factories\AbstractSingletonFactory;
+use FF\Factories\ClassLocators\BaseNamespaceClassLocator;
 use FF\Factories\ClassLocators\ClassLocatorInterface;
-use FF\Factories\ClassLocators\NamespaceClassLocator;
 use FF\Factories\Exceptions\ClassNotFoundException;
+use FF\Services\AbstractService;
 use FF\Services\Exceptions\ConfigurationException;
 
 /**
  * Class ServicesFactory
  *
- * @package FF\Services
+ * @package FF\Factories
  */
 class ServicesFactory extends AbstractSingletonFactory
 {
@@ -34,13 +34,14 @@ class ServicesFactory extends AbstractSingletonFactory
     protected $servicesOptions;
 
     /**
-     * Uses a NamespaceClassLocator pre-configured with the FF\Services namespace.
+     * Uses a BaseNamespaceClassLocator pre-configured with the 'Services' as common suffix and the FF namespace.
+     *
      * @param array $servicesOptions
-     * @see \FF\Factories\ClassLocators\NamespaceClassLocator
+     * @see \FF\Factories\ClassLocators\BaseNamespaceClassLocator
      */
     public function __construct(array $servicesOptions = [])
     {
-        parent::__construct(new NamespaceClassLocator(__NAMESPACE__));
+        parent::__construct(new BaseNamespaceClassLocator(AbstractService::COMMON_NS_SUFFIX, 'FF'));
 
         $this->servicesOptions = $servicesOptions;
     }
@@ -116,7 +117,7 @@ class ServicesFactory extends AbstractSingletonFactory
 
     /**
      * {@inheritDoc}
-     * @return NamespaceClassLocator
+     * @return BaseNamespaceClassLocator
      */
     public function getClassLocator(): ClassLocatorInterface
     {

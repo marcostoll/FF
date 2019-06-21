@@ -14,7 +14,8 @@
   ],
   "require": {
     "php": ">=7.2",
-    "fastforward/factories": "^1.0.0"
+    "fastforward/data-structures": "^1.0.0",
+    "fastforward/factories": "^1.2.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^8"

@@ -8,10 +8,10 @@
  */
 declare(strict_types=1);
 
-namespace FF\Tests\Services;
+namespace FF\Tests\Factories;
 
-use FF\Services\ServicesFactory;
-use FF\Services\SF;
+use FF\Factories\ServicesFactory;
+use FF\Factories\SF;
 use PHPUnit\Framework\TestCase;
 
 /**
