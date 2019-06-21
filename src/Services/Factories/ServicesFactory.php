@@ -8,18 +8,19 @@
  */
 declare(strict_types=1);
 
-namespace FF\Services;
+namespace FF\Services\Factories;
 
 use FF\Factories\AbstractSingletonFactory;
 use FF\Factories\ClassLocators\ClassLocatorInterface;
 use FF\Factories\ClassLocators\NamespaceClassLocator;
 use FF\Factories\Exceptions\ClassNotFoundException;
+use FF\Services\AbstractService;
 use FF\Services\Exceptions\ConfigurationException;
 
 /**
  * Class ServicesFactory
  *
- * @package FF\Services
+ * @package FF\Services\Factories
  */
 class ServicesFactory extends AbstractSingletonFactory
 {

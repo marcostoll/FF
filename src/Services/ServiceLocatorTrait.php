@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace FF\Services;
 
+use FF\Services\Factories\SF;
+
 /**
  * Trait ServiceLocatorTrait
  *
