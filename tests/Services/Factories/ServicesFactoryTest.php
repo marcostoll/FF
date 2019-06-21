@@ -8,119 +8,139 @@
  */
 declare(strict_types=1);
 
-namespace FF\Tests\Services\Factories;
+namespace FF\Tests\Services\Factories {
 
-use FF\Factories\Exceptions\ClassNotFoundException;
-use FF\Services\AbstractService;
-use FF\Services\Exceptions\ConfigurationException;
-use FF\Services\Factories\ServicesFactory;
-use PHPUnit\Framework\TestCase;
-
-/**
- * Test ServicesFactoryTest
- *
- * @package FF\Tests
- */
-class ServicesFactoryTest extends TestCase
-{
-    const TEST_OPTIONS = ['ServiceOne' => ['foo' => 'bar']];
+    use FF\Factories\ClassLocators\BaseNamespaceClassLocator;
+    use FF\Factories\Exceptions\ClassNotFoundException;
+    use FF\Services\Exceptions\ConfigurationException;
+    use FF\Services\Factories\ServicesFactory;
+    use FF\Tests\Services\ServiceOne;
+    use FF\Tests\Services\ServiceTwo;
+    use PHPUnit\Framework\TestCase;
 
     /**
-     * {@inheritdoc}
-     */
-    public static function setUpBeforeClass(): void
-    {
-        ServicesFactory::clearInstance();
-    }
-
-    /**
-     * Tests the namesake method/feature
-     */
-    public function testGetInstanceConfigException()
-    {
-        $this->expectException(ConfigurationException::class);
-
-        ServicesFactory::getInstance();
-    }
-
-    /**
-     * Tests the namesake method/feature
-     */
-    public function testSetGetInstance()
-    {
-        $instance = new ServicesFactory(self::TEST_OPTIONS);
-        $instance->getClassLocator()->prependNamespaces(__NAMESPACE__);
-        ServicesFactory::setInstance($instance);
-
-        $this->assertSame($instance, ServicesFactory::getInstance());
-    }
-
-    /**
-     * Tests the namesake method/feature
+     * Test ServicesFactoryTest
      *
-     * @depends testSetGetInstance
+     * @package FF\Tests
      */
-    public function testSetServiceOptions()
+    class ServicesFactoryTest extends TestCase
     {
-        $this->assertEquals(
-            self::TEST_OPTIONS['ServiceOne'],
-            ServicesFactory::getInstance()->getServiceOptions('ServiceOne')
-        );
-        $this->assertEquals([], ServicesFactory::getInstance()->getServiceOptions('unknown'));
-    }
+        const TEST_OPTIONS = ['ServiceOne' => ['foo' => 'bar']];
 
-    /**
-     * Tests the namesake method/feature
-     *
-     * @depends testSetGetInstance
-     */
-    public function testGetSingle()
-    {
-        $service = ServicesFactory::getInstance()->get('ServiceOne');
-        $this->assertInstanceOf(ServiceOne::class, $service);
-        $this->assertEquals(self::TEST_OPTIONS['ServiceOne'], $service->getOptions());
-    }
-
-    /**
-     * Tests the namesake method/feature
-     *
-     * @depends testSetGetInstance
-     */
-    public function testGetMultiples()
-    {
-        $services = ServicesFactory::getInstance()->get('ServiceOne', 'ServiceOne');
-        $this->assertEquals(2, count($services));
-        $this->assertInstanceOf(ServiceOne::class, $services[0]);
-        $this->assertInstanceOf(ServiceOne::class, $services[1]);
-    }
-
-    /**
-     * Tests the namesake method/feature
-     *
-     * @depends testSetGetInstance
-     */
-    public function testGetClassNotFound()
-    {
-        $this->expectException(ClassNotFoundException::class);
-
-        ServicesFactory::getInstance()->get('ServiceUnknown');
-    }
-}
-
-class ServiceOne extends AbstractService
-{
-    protected function validateOptions(array $options, array &$errors): bool
-    {
-        if (isset($options['foo']) && $options['foo'] != 'bar') {
-            $errors[] = 'foo is not bar';
-            return false;
+        /**
+         * {@inheritdoc}
+         */
+        public static function setUpBeforeClass(): void
+        {
+            ServicesFactory::clearInstance();
         }
 
-        return parent::validateOptions($options, $errors);
+        /**
+         * Tests the namesake method/feature
+         */
+        public function testGetInstanceConfigException()
+        {
+            $this->expectException(ConfigurationException::class);
+
+            ServicesFactory::getInstance();
+        }
+
+        /**
+         * Tests the namesake method/feature
+         */
+        public function testSetGetInstance()
+        {
+            $instance = new ServicesFactory(self::TEST_OPTIONS);
+            $instance->getClassLocator()->prependNamespaces('FF\Tests');
+            ServicesFactory::setInstance($instance);
+
+            $this->assertSame($instance, ServicesFactory::getInstance());
+        }
+
+        /**
+         * Tests the namesake method/feature
+         */
+        public function testGetClassLocator()
+        {
+            $this->assertInstanceOf(
+                BaseNamespaceClassLocator::class,
+                ServicesFactory::getInstance()->getClassLocator()
+            );
+        }
+
+        /**
+         * Tests the namesake method/feature
+         *
+         * @depends testSetGetInstance
+         */
+        public function testSetServiceOptions()
+        {
+            $this->assertEquals(
+                self::TEST_OPTIONS['ServiceOne'],
+                ServicesFactory::getInstance()->getServiceOptions('ServiceOne')
+            );
+            $this->assertEquals([], ServicesFactory::getInstance()->getServiceOptions('ServiceTwo'));
+            $this->assertEquals([], ServicesFactory::getInstance()->getServiceOptions('unknown'));
+        }
+
+        /**
+         * Tests the namesake method/feature
+         *
+         * @depends testSetGetInstance
+         */
+        public function testGetSingle()
+        {
+            $service = ServicesFactory::getInstance()->get('ServiceOne');
+            $this->assertInstanceOf(ServiceOne::class, $service);
+            $this->assertEquals(self::TEST_OPTIONS['ServiceOne'], $service->getOptions());
+        }
+
+        /**
+         * Tests the namesake method/feature
+         *
+         * @depends testSetGetInstance
+         */
+        public function testGetMultiples()
+        {
+            $services = ServicesFactory::getInstance()->get('ServiceOne', 'ServiceTwo');
+            $this->assertEquals(2, count($services));
+            $this->assertInstanceOf(ServiceOne::class, $services[0]);
+            $this->assertInstanceOf(ServiceTwo::class, $services[1]);
+        }
+
+        /**
+         * Tests the namesake method/feature
+         *
+         * @depends testSetGetInstance
+         */
+        public function testGetClassNotFound()
+        {
+            $this->expectException(ClassNotFoundException::class);
+
+            ServicesFactory::getInstance()->get('ServiceUnknown');
+        }
     }
 }
 
-class ServiceTwo extends AbstractService
-{
+namespace FF\Tests\Services {
 
+    use FF\Services\AbstractService;
+
+    class ServiceOne extends AbstractService
+    {
+        protected function validateOptions(array $options, array &$errors): bool
+        {
+            if (isset($options['foo']) && $options['foo'] != 'bar') {
+                $errors[] = 'foo is not bar';
+                return false;
+            }
+
+            return parent::validateOptions($options, $errors);
+        }
+    }
+
+    class ServiceTwo extends AbstractService
+    {
+
+    }
 }

@@ -8,14 +8,15 @@
  */
 declare(strict_types=1);
 
-namespace FF\Services;
+namespace FF\Services\Traits;
 
+use FF\Services\AbstractService;
 use FF\Services\Factories\SF;
 
 /**
  * Trait ServiceLocatorTrait
  *
- * @package FF\Services
+ * @package FF\Services\Traits
  */
 trait ServiceLocatorTrait
 {

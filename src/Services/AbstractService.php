@@ -10,16 +10,24 @@ declare(strict_types=1);
 
 namespace FF\Services;
 
+use FF\Factories\ClassLocators\ClassIdentifierAwareInterface;
 use FF\Services\Exceptions\ConfigurationException;
+use FF\Services\Traits\EventEmitterTrait;
+use FF\Services\Traits\ServiceLocatorTrait;
 
 /**
  * Class AbstractService
  *
  * @package FF\Services
  */
-abstract class AbstractService
+abstract class AbstractService implements ClassIdentifierAwareInterface
 {
-    use ServiceLocatorTrait;
+    use EventEmitterTrait, ServiceLocatorTrait;
+
+    /**
+     * For use with the BaseNamespaceClassLocator of the ServicesFactory
+     */
+    const COMMON_NS_SUFFIX = 'Services';
 
     /**
      * @var array
@@ -55,6 +63,19 @@ abstract class AbstractService
     public function getOption(string $key, $default = null)
     {
         return $this->options[$key] ?? $default;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function getClassIdentifier(): string
+    {
+        $className = get_called_class();
+        $needle = '\\' . self::COMMON_NS_SUFFIX . '\\';
+        $pos = strpos($className, $needle);
+        if ($pos === false) return $className;
+
+        return substr($className, $pos + strlen($needle));
     }
 
     /**

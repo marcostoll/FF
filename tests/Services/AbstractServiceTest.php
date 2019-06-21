@@ -71,6 +71,14 @@ class AbstractServiceTest extends TestCase
 
         new MyService(['foo' => 'baz']);
     }
+
+    /**
+     * Tests the namesake method/feature
+     */
+    public function testGetClassIdentifier()
+    {
+        $this->assertEquals('MyService', MyService::getClassIdentifier());
+    }
 }
 
 class MyService extends AbstractService
