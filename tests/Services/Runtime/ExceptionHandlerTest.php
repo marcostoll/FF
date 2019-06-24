@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace FF\Tests\Runtime;
+namespace FF\Tests\Services\Runtime;
 
 use FF\Events\Runtime\Exception;
 use FF\Factories\ServicesFactory;
