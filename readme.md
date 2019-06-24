@@ -40,9 +40,9 @@ instead of some framework configuration.
 
 # Installation
 
-## via Composer
+## Via Composer (recommended)
 
-## manual Installation
+## Manual Installation
 
 # Bootstrapping
 
@@ -52,7 +52,7 @@ instead of some framework configuration.
 
 # Services and the Service Factory
 
-## Services - a definition
+## Services - a Definition
 
 From the **FF** perspective a service is a singular component (mostly class) that provide needed functionality as part
 of certain domain. Common attributes of services should be
@@ -60,7 +60,7 @@ of certain domain. Common attributes of services should be
 - Be stateless.
 - Be unit testable.
 
-## Writing services
+## Writing Services
 
 [**CONVENTION**] Service classes extend `FF\Services\AbstractService`.  
 [**CONVENTION**] Services must be located in your project's `MyProject\Services` namespace (or any sub namespace 
@@ -271,20 +271,20 @@ thereof) to be found by the `EventsFactory`.
         }
     }
 
-# Runtime event handlers
+# Runtime Event Handlers
 
 This feature introduces three different handler classes for registering as callbacks to one of the three runtime events 
 of the php engine (error, exception, shutdown). The handlers translate php's core event information to **FF\Events** 
 event instances using the `EventBroker`.
 
-## Registering runtime event handlers
+## Registering Runtime Event Handlers
 
 All handlers implement the `RuntimeEventHandlerInterface` which lets you `register()` them on demand.  
 The `ErrorHandler` as well as the `ExceptionHandler` each are aware of any previous handlers that might have been 
 registered to their runtime events and let you restore the previous state. When registering shutdown handlers no
 information regarding the previous state is provided by php.
 
-## Subscribing to runtime events
+## Subscribing to Runtime Events
 
 The handlers fire their own events containing all available event data which makes it easy for you to handle them by
 subscribing to the `FF\Events\EventBroker`.
@@ -313,7 +313,7 @@ Example:
 This feature provides the `TemplateRendererInterface` defining the basic api for adding concrete template rendering
 class.
 
-## Rendering events
+## Rendering Events
 
 The `TemplateRendererInterface` defines that each concrete renderer may fire the following events while performing its
 `render()` method:
@@ -324,14 +324,14 @@ The `TemplateRendererInterface` defines that each concrete renderer may fire the
 Adding observers for this events lets you manipulate the rendering input data as well as the rendering output document
 on your behalf.
 
-## Twig support
+## Twig Support
 A generic `TwigRenderer` renderer service is provided using a `Twig\FilesystemLoader` to locate templates.
 
 Consult <https://twig.symfony.com/> to learn more about **Twig**.
 
 The `TwigRenderer` may be configured to fire rendering events if desired.
 
-# Dispatching and controllers
+# Dispatching and Controllers
 
 This feature provides the `Dispatcher` service that lets you delegate requests to your desired controller action base
 on a defined routing as well as the `AbstractController` base class.
@@ -367,7 +367,7 @@ Some examples:
         requirements:
             category: \w+   
             
-## Writing controllers 
+## Writing Controllers 
 
 [**CONVENTION**] Controller classes extend `FF\Controllers\AbstractController`.  
 [**CONVENTION**] Controllers must be located in your project's `MyProject\Controllers` namespace (or any sub namespace 
@@ -435,7 +435,7 @@ Each concrete controller must implement the `getTemplateRenderer()` method. If y
         }
     }     
 
-# Road map
+# Road Map
 
 - Sessions
 - Security
