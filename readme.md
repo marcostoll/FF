@@ -19,6 +19,7 @@ Currently **FF** is composed of the following features:
 1. Services and the Service Factory
 2. Events and the Event Broker
 3. Runtime event handlers
+5. Templating and Twig as a Service
 
 More features will follow (see the Road Map section below).
 
@@ -305,6 +306,29 @@ Example:
         // handle the event data
         var_dump($event->getErroNo(), $event->getErrMsg());  
     }};  
+    
+# Templating and Twig as a Service    
+
+This feature provides the `TemplateRendererInterface` defining the basic api for adding concrete template rendering
+class.
+
+## Rendering Events
+
+The `TemplateRendererInterface` defines that each concrete renderer may fire the following events while performing its
+`render()` method:
+
+- Templating\PreRender    : directly before rendering the template
+- Templating\PostRender   : directly after rendering the template
+
+Adding observers for this events lets you manipulate the rendering input data as well as the rendering output document
+on your behalf.
+
+## Twig Support
+A generic `TwigRenderer` renderer service is provided using a `Twig\FilesystemLoader` to locate templates.
+
+Consult <https://twig.symfony.com/> to learn more about **Twig**.
+
+The `TwigRenderer` may be configured to fire rendering events if desired.
 
 # Road map
 
