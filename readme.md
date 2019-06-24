@@ -19,7 +19,8 @@ Currently **FF** is composed of the following features:
 1. Services and the Service Factory
 2. Events and the Event Broker
 3. Runtime event handlers
-5. Templating and Twig as a Service
+4. Templating and Twig as a Service
+5. Dispatching and Controllers
 
 More features will follow (see the Road Map section below).
 
@@ -312,7 +313,7 @@ Example:
 This feature provides the `TemplateRendererInterface` defining the basic api for adding concrete template rendering
 class.
 
-## Rendering Events
+## Rendering events
 
 The `TemplateRendererInterface` defines that each concrete renderer may fire the following events while performing its
 `render()` method:
@@ -323,16 +324,119 @@ The `TemplateRendererInterface` defines that each concrete renderer may fire the
 Adding observers for this events lets you manipulate the rendering input data as well as the rendering output document
 on your behalf.
 
-## Twig Support
+## Twig support
 A generic `TwigRenderer` renderer service is provided using a `Twig\FilesystemLoader` to locate templates.
 
 Consult <https://twig.symfony.com/> to learn more about **Twig**.
 
 The `TwigRenderer` may be configured to fire rendering events if desired.
 
+# Dispatching and controllers
+
+This feature provides the `Dispatcher` service that lets you delegate requests to your desired controller action base
+on a defined routing as well as the `AbstractController` base class.
+
+## Routing
+
+The `Disptacher` expects its routing configuration in yaml form. It will parse this information via **Symfony**'s 
+`YamlFileLoader`
+
+As valid yml structure route entries in the configuration should look like this:
+
+    << route name >>:
+        path: << url path >>
+        defaults: { controller: << controller class identifier >>, action: << action method >> }
+        
+The `path` my contain argument placeholder in the form of `{arg}`.
+The `defaults` section may additionally contain named arguments to provide default values for `path`arguments.
+You may provide a `requirements` section to specify route limitations (like patterns for acceptable argument values).
+See <https://symfony.com/doc/current/routing.html> for more information.
+
+Some examples:
+
+    # route to the 'index' action of your project's IndexController
+    home:
+        path: /
+        defaults: { controller: IndexController, action: index }
+        
+    # route to the 'list' action of your project's ArticlesController located in the sub package 'Articles'
+    # defines an optional path argument 'category' that will be fill with an empty string if omitted    
+    list-articles:
+        path: /articles/{category}
+        defaults: { controller: Articles\ArticlesController, action: list, category: '' }
+        requirements:
+            category: \w+   
+            
+## Writing controllers 
+
+[**CONVENTION**] Controller classes extend `FF\Controllers\AbstractController`.  
+[**CONVENTION**] Controllers must be located in your project's `MyProject\Controllers` namespace (or any sub namespace 
+thereof) to be found by the `Controllers`.
+
+Any action method  a controller defines must meet the following requirements:
+[**CONVENTION**] must be public
+[**CONVENTION**] must not be static
+[**CONVENTION**] must return an instance of Symfony\Component\HttpFoundation\Response
+
+Action methods may define any number of arguments.
+
+Each concrete controller must implement the `getTemplateRenderer()` method. If you like to use **FF**'s built-in 
+**Twig** rendering service, just provide a common base class for the controllers in your project and retrieve the
+`TwigRenderer` from the service factory.
+
+***Example: Twig-aware base controller***
+
+    namespace MyProject\Controllers;
+    
+    use FF\Controllers\AbstractController;
+    use FF\Factories\SF;
+    use FF\Services\Templating\TemplateRendererInterface;
+    use FF\Services\Templating\TwigRenderer;
+    
+    /**
+     * This event's class identifier would just be 'HelloWorld'
+     */
+    class TwigAwareBaseController extends AbstractController
+    {
+        /**
+         * @{inheritDoc}
+         * @return TwigRenderer
+         */
+        protected function getTemplateRenderer(): TemplateRendererInterface
+        {
+            return SF::i()->get('Templating\TwigRenderer');
+        }  
+    }
+
+***Example: A hello world controller***
+
+    namespace MyProject\Controllers;
+    
+    use Symfony\Component\HttpFoundation\Response;
+    
+    /**
+     * This event's class identifier would just be 'HelloWorld'
+     */
+    class HelloWorld extends TwigAwareBaseController
+    {
+        /**
+         * An action method
+         *
+         * The yml route configuration for thius action would be
+         *
+         + your-route-name:
+         *      defaults: { controller: HelloWorld, action: helloWorld }
+         *
+         * @return Response
+         */
+        public function helloWorld()
+        {
+            return $this->render('hello-world.html.twig', ['msg' => 'Hello, World!']);
+        }
+    }     
+
 # Road map
 
-- Controllers
 - Sessions
 - Security
 - CLI
