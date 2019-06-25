@@ -48,6 +48,20 @@ namespace FF\Tests\Factories {
         /**
          * Tests the namesake method/feature
          */
+        public function testClearInstance()
+        {
+            $this->expectException(ConfigurationException::class);
+
+            $instance = new ServicesFactory(self::TEST_OPTIONS);
+            $instance->getClassLocator()->prependNamespaces('FF\Tests');
+            ServicesFactory::setInstance($instance);
+            ServicesFactory::clearInstance();
+            ServicesFactory::getInstance();
+        }
+
+        /**
+         * Tests the namesake method/feature
+         */
         public function testSetGetInstance()
         {
             $instance = new ServicesFactory(self::TEST_OPTIONS);

@@ -86,9 +86,14 @@ class ExceptionHandlerTest extends TestCase
 
     /**
      * @param Exception $event
+     * @throws \Exception
      */
     public static function listener(Exception $event)
     {
+        if ($event->getException()->getMessage() == 'cascade') {
+            throw new \Exception('cascade failure');
+        }
+
         self::$lastEvent = $event;
     }
 
@@ -139,6 +144,18 @@ class ExceptionHandlerTest extends TestCase
 
         $this->assertNotNull(self::$lastEvent);
         $this->assertSame($e, self::$lastEvent->getException());
+    }
+
+    /**
+     * Tests the namesake method/feature
+     */
+    public function testTriggerExceptionCascade()
+    {
+        $e = new \Exception('cascade');
+        $this->uut->register()
+            ->onException($e);
+
+        $this->assertNull(self::$lastEvent);
     }
 
     /**

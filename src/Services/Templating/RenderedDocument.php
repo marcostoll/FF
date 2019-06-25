@@ -27,7 +27,7 @@ class RenderedDocument
      */
     public function __construct(string $contents)
     {
-        $this->contents = $contents;
+        $this->setContents($contents);
     }
 
     /**

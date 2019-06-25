@@ -103,11 +103,10 @@
                 <!-- <coverage path="" /> -->
                 <!--           @path - the directory where the xml code coverage report can be found -->
                 <!--</source>-->
-                <!--
                 <source type="phpunit">
                     <filter directory="${phpDox.project.source}" />
+                    <coverage path="../logs/phpunit" />
                 </source>
-                -->
 
             </enrich>
 
