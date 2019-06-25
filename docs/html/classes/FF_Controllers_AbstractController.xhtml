@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - FF\Controllers\AbstractController</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.xhtml">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.xhtml">Namespaces</a>
+        </li>
+        <li>
+          <a href="../interfaces.xhtml">Interfaces</a>
+        </li>
+        <li>
+          <a href="../classes.xhtml">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.xhtml">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.xhtml">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.xhtml">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.xhtml">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.xhtml#FF_Controllers">FF\Controllers</a>
+          </li>
+          <li class="separator">AbstractController</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#constants">Constants</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Controllers/AbstractController.php.xhtml#line32">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>FF\Controllers\</small>AbstractController</h1>
+        <h4>Class AbstractController</h4>
+        <p>Concrete sub classes should define one or more action methods.<br/><br/>Any action method must meet the following requirements:<br/>- must be public<br/>- must not be static<br/>- must return an instance of Symfony\Component\HttpFoundation\Response<br/><br/>Action methods may define any number of arguments</p>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class AbstractController
+            {<br/><ul class="none"><li>// constants</li><li>const COMMON_NS_SUFFIX = 'Controllers';</li></ul><ul class="none"><li>// methods</li><li>protected Response <a title="FF\Controllers\AbstractController" href="../classes/FF_Controllers_AbstractController/forward.xhtml">forward</a>()
+                    </li><li>protected string <a title="FF\Controllers\AbstractController" href="../classes/FF_Controllers_AbstractController/render.xhtml">render</a>()
+                    </li><li>protected abstract <span title="TemplateRendererInterface">TemplateRendererInterface</span> <a title="FF\Controllers\AbstractController" href="../classes/FF_Controllers_AbstractController/getTemplateRenderer.xhtml">getTemplateRenderer</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="constants">Constants</h2>
+        <table class="styled">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="COMMON_NS_SUFFIX">COMMON_NS_SUFFIX</td>
+              <td>'Controllers'</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="forward"><a title="FF\Controllers\AbstractController" href="../classes/FF_Controllers_AbstractController/forward.xhtml">forward()</a>
+                — Forwards to another controller action</li>
+            <li id="getTemplateRenderer">
+              <a title="FF\Controllers\AbstractController" href="../classes/FF_Controllers_AbstractController/getTemplateRenderer.xhtml">getTemplateRenderer()</a>
+            </li>
+            <li id="render"><a title="FF\Controllers\AbstractController" href="../classes/FF_Controllers_AbstractController/render.xhtml">render()</a>
+                — Renders a template</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2019-06-24T11:43:49+02:00 (commit #<span title="74215856975c402811c5aa9e101c9e1af47166d5">7421585</span>)</h3>
+            <div>
+              <p>
+                        Author: Marco Stoll (marco.stoll@rocketmail.com) /
+                        Commiter: Marco Stoll (marco.stoll@rocketmail.com)
+                    </p>
+              <pre class="wrapped">[FEATURE] dispatching and controllers</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.12.0-dev - Copyright (C) 2010 - 2019 by Arne Blankerts and Contributors</span>
+    </footer>
+  </body>
+</html>

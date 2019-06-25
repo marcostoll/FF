@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - FF\Services\Runtime\ShutdownHandler</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.xhtml">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.xhtml">Namespaces</a>
+        </li>
+        <li>
+          <a href="../interfaces.xhtml">Interfaces</a>
+        </li>
+        <li>
+          <a href="../classes.xhtml">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.xhtml">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.xhtml">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.xhtml">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.xhtml">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.xhtml#FF_Services_Runtime">FF\Services\Runtime</a>
+          </li>
+          <li class="separator">ShutdownHandler</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#constants">Constants</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Services/Runtime/ShutdownHandler.php.xhtml#line24">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>FF\Services\Runtime\</small>ShutdownHandler</h1>
+        <h4>Class ErrorHandler</h4>
+        <p>Options:<br/><br/> - force-exit    : bool (default: false)     - invoke exit() after firing Shutdown event</p>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class ShutdownHandler
+                extends <a title="FF\Services\AbstractService" href="../classes/FF_Services_AbstractService.xhtml">AbstractService</a>
+                implements
+                <a title="FF\Services\Runtime\RuntimeEventHandlerInterface" href="../interfaces/FF_Services_Runtime_RuntimeEventHandlerInterface.xhtml">RuntimeEventHandlerInterface</a>
+            {<br/><ul class="none"><li>// constants</li><li>const FATAL_ERRORS = ;</li></ul><ul class="none"><li>// Inherited constants from <a title="FF\Services\AbstractService" href="../classes/FF_Services_AbstractService.xhtml">AbstractService</a></li><li>const <a href="#COMMON_NS_SUFFIX">COMMON_NS_SUFFIX</a> = 'Services';</li></ul><ul class="none"><li>// members</li><li>protected <span title="FF\Services\Runtime\bool">bool</span> <a href="#members">$forceExit</a>;
+                    </li></ul><ul class="none"><li>// Inherited members from <span title="FF\Services\AbstractService">AbstractService</span></li><li>protected  <a href="#members">$options</a>;
+                        </li></ul><ul class="none"><li>// methods</li><li>public $this <a title="FF\Services\Runtime\ShutdownHandler" href="../classes/FF_Services_Runtime_ShutdownHandler/register.xhtml">register</a>()
+                    </li><li>public bool <a title="FF\Services\Runtime\ShutdownHandler" href="../classes/FF_Services_Runtime_ShutdownHandler/getForceExit.xhtml">getForceExit</a>()
+                    </li><li>public $this <a title="FF\Services\Runtime\ShutdownHandler" href="../classes/FF_Services_Runtime_ShutdownHandler/setForceExit.xhtml">setForceExit</a>()
+                    </li><li>public void <a title="FF\Services\Runtime\ShutdownHandler" href="../classes/FF_Services_Runtime_ShutdownHandler/onShutdown.xhtml">onShutdown</a>()
+                    </li><li>protected void <a title="FF\Services\Runtime\ShutdownHandler" href="../classes/FF_Services_Runtime_ShutdownHandler/initialize.xhtml">initialize</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="FF\Services\AbstractService">AbstractService</span></li><li>public final void <a title="FF\Services\AbstractService" href="../classes/FF_Services_AbstractService/__construct.xhtml">__construct</a>()
+                        </li><li>public array <a title="FF\Services\AbstractService" href="../classes/FF_Services_AbstractService/getOptions.xhtml">getOptions</a>()
+                        </li><li>public mixed <a title="FF\Services\AbstractService" href="../classes/FF_Services_AbstractService/getOption.xhtml">getOption</a>()
+                        </li><li>public static void <a title="FF\Services\AbstractService" href="../classes/FF_Services_AbstractService/getClassIdentifier.xhtml">getClassIdentifier</a>()
+                        </li><li>protected void <a title="FF\Services\AbstractService" href="../classes/FF_Services_AbstractService/initialize.xhtml">initialize</a>()
+                        </li><li>protected bool <a title="FF\Services\AbstractService" href="../classes/FF_Services_AbstractService/validateOptions.xhtml">validateOptions</a>()
+                        </li></ul><ul class="none"><li>// Inherited methods from <span title="FF\Services\Traits\EventEmitterTrait">EventEmitterTrait</span></li><li>protected $this <a title="FF\Services\Traits\EventEmitterTrait" href="../traits/FF_Services_Traits_EventEmitterTrait/fire.xhtml">fire</a>()
+                        </li></ul><ul class="none"><li>// Inherited methods from <span title="FF\Services\Traits\ServiceLocatorTrait">ServiceLocatorTrait</span></li><li>protected array <a title="FF\Services\Traits\ServiceLocatorTrait" href="../traits/FF_Services_Traits_ServiceLocatorTrait/getService.xhtml">getService</a>()
+                        </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+            <li>
+              <a title="FF\Services\AbstractService" href="../classes/FF_Services_AbstractService.xhtml">FF\Services\AbstractService</a>
+            </li>
+          </ul>
+          <h4>Implements</h4>
+          <ul>
+            <li>
+              <a title="FF\Services\Runtime\RuntimeEventHandlerInterface" href="../interfaces/FF_Services_Runtime_RuntimeEventHandlerInterface.xhtml">FF\Services\Runtime\RuntimeEventHandlerInterface</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="constants">Constants</h2>
+        <table class="styled">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="FATAL_ERRORS">FATAL_ERRORS</td>
+              <td/>
+            </tr>
+            <tr>
+              <td id="COMMON_NS_SUFFIX">COMMON_NS_SUFFIX</td>
+              <td>'Services'</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="forceExit"><strong>$forceExit</strong>
+                —
+                <a title="FF\Services\Runtime\bool" href="../classes/FF_Services_Runtime_bool.xhtml">FF\Services\Runtime\bool</a></li>
+            <li id="options"><strong>$options</strong>
+                —
+                array</li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="initialize"><a title="FF\Services\Runtime\ShutdownHandler" href="../classes/FF_Services_Runtime_ShutdownHandler/initialize.xhtml">initialize()</a>
+                — {@inheritDoc}</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="getForceExit">
+              <a title="FF\Services\Runtime\ShutdownHandler" href="../classes/FF_Services_Runtime_ShutdownHandler/getForceExit.xhtml">getForceExit()</a>
+            </li>
+            <li id="onShutdown"><a title="FF\Services\Runtime\ShutdownHandler" href="../classes/FF_Services_Runtime_ShutdownHandler/onShutdown.xhtml">onShutdown()</a>
+                — Generic shutdown handler callback</li>
+            <li id="register"><a title="FF\Services\Runtime\ShutdownHandler" href="../classes/FF_Services_Runtime_ShutdownHandler/register.xhtml">register()</a>
+                — {@inheritdoc}</li>
+            <li id="setForceExit">
+              <a title="FF\Services\Runtime\ShutdownHandler" href="../classes/FF_Services_Runtime_ShutdownHandler/setForceExit.xhtml">setForceExit()</a>
+            </li>
+          </ul>
+          <h3>Inherited from <a title="FF\Services\AbstractService" href="../classes/FF_Services_AbstractService.xhtml">FF\Services\AbstractService</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="initialize"><a title="FF\Services\AbstractService" href="../classes/FF_Services_AbstractService/initialize.xhtml">initialize()</a>
+                — Initializes the service</li>
+            <li id="validateOptions"><a title="FF\Services\AbstractService" href="../classes/FF_Services_AbstractService/validateOptions.xhtml">validateOptions()</a>
+                — Validates the service's options</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="getClassIdentifier"><a title="FF\Services\AbstractService" href="../classes/FF_Services_AbstractService/getClassIdentifier.xhtml">getClassIdentifier()</a>
+                — {@inheritDoc}</li>
+            <li id="getOption"><a title="FF\Services\AbstractService" href="../classes/FF_Services_AbstractService/getOption.xhtml">getOption()</a>
+                — Retrieves a config option</li>
+            <li id="getOptions">
+              <a title="FF\Services\AbstractService" href="../classes/FF_Services_AbstractService/getOptions.xhtml">getOptions()</a>
+            </li>
+          </ul>
+          <h3>Inherited from <a title="FF\Services\Traits\EventEmitterTrait" href="../traits/FF_Services_Traits_EventEmitterTrait.xhtml">FF\Services\Traits\EventEmitterTrait</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="fire"><a title="FF\Services\Traits\EventEmitterTrait" href="../traits/FF_Services_Traits_EventEmitterTrait/fire.xhtml">fire()</a>
+                — Creates an event instance and fires it</li>
+          </ul>
+          <h3>Inherited from <a title="FF\Services\Traits\ServiceLocatorTrait" href="../traits/FF_Services_Traits_ServiceLocatorTrait.xhtml">FF\Services\Traits\ServiceLocatorTrait</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="getService"><a title="FF\Services\Traits\ServiceLocatorTrait" href="../traits/FF_Services_Traits_ServiceLocatorTrait/getService.xhtml">getService()</a>
+                — Retrieves services from the factory</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2019-06-21T11:43:14+02:00 (commit #<span title="5cdcf7752ebc07526f9dcc9fd9072592fc4348db">5cdcf77</span>)</h3>
+            <div>
+              <p>
+                        Author: Marco Stoll (marco.stoll@rocketmail.com) /
+                        Commiter: Marco Stoll (marco.stoll@rocketmail.com)
+                    </p>
+              <pre class="wrapped">[FEATURE] add the runtime event handlers</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.12.0-dev - Copyright (C) 2010 - 2019 by Arne Blankerts and Contributors</span>
+    </footer>
+  </body>
+</html>
