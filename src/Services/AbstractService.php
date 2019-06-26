@@ -38,7 +38,7 @@ abstract class AbstractService implements ClassIdentifierAwareInterface
      * @param array $options
      * @throws ConfigurationException
      */
-    public final function __construct(array $options = [])
+    final public function __construct(array $options = [])
     {
         $this->initialize($options);
     }
@@ -73,7 +73,9 @@ abstract class AbstractService implements ClassIdentifierAwareInterface
         $className = get_called_class();
         $needle = '\\' . self::COMMON_NS_SUFFIX . '\\';
         $pos = strpos($className, $needle);
-        if ($pos === false) return $className;
+        if ($pos === false) {
+            return $className;
+        }
 
         return substr($className, $pos + strlen($needle));
     }

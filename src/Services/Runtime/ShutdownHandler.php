@@ -98,7 +98,9 @@ class ShutdownHandler extends AbstractService implements RuntimeEventHandlerInte
 
         $this->fire('Runtime\Shutdown');
 
-        if ($this->forceExit) exit();
+        if ($this->forceExit) {
+            exit();
+        }
     }
 
     /**

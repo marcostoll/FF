@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace FF\Factories;
 
-
 use FF\Controllers\AbstractController;
 use FF\Factories\ClassLocators\BaseNamespaceClassLocator;
 use FF\Factories\ClassLocators\ClassLocatorInterface;
@@ -42,7 +41,6 @@ class ControllersFactory extends AbstractSingletonFactory
      */
     protected function __clone()
     {
-
     }
 
     /**

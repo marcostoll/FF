@@ -120,10 +120,14 @@ class EventBroker extends AbstractService
     {
         /** @var OrderedCollection $listenerCollection */
         foreach ($this->subscriptions as $name => $listenerCollection) {
-            if (!is_null($classIdentifier) && $classIdentifier != $name) continue;
+            if (!is_null($classIdentifier) && $classIdentifier != $name) {
+                continue;
+            }
 
             $index = $listenerCollection->search($listener, true);
-            if (is_null($index)) continue;
+            if (is_null($index)) {
+                continue;
+            }
 
             // remove listener from event
             unset($listenerCollection[$index]);
@@ -164,7 +168,9 @@ class EventBroker extends AbstractService
      */
     public function isSubscribed(callable $listener, string $classIdentifier): bool
     {
-        if (!$this->hasSubscribers($classIdentifier)) return false;
+        if (!$this->hasSubscribers($classIdentifier)) {
+            return false;
+        }
 
         return !is_null($this->subscriptions->get($classIdentifier)->search($listener));
     }
@@ -187,7 +193,9 @@ class EventBroker extends AbstractService
     public function fire(string $classIdentifier, ...$args)
     {
         $event = $this->createEvent($classIdentifier, ...$args);
-        if (is_null($event)) return $this;
+        if (is_null($event)) {
+            return $this;
+        }
 
         foreach ($this->getSubscribers($classIdentifier) as $listener) {
             $this->notify($listener, $event);
@@ -208,7 +216,9 @@ class EventBroker extends AbstractService
      */
     protected function initializeSubscribersCollection(string $classIdentifier)
     {
-        if ($this->subscriptions->has($classIdentifier)) return;
+        if ($this->subscriptions->has($classIdentifier)) {
+            return;
+        }
 
         $this->subscriptions->set($classIdentifier, new OrderedCollection());
     }

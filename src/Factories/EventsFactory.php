@@ -42,7 +42,6 @@ class EventsFactory extends AbstractFactory
      */
     protected function __clone()
     {
-
     }
 
     /**

@@ -63,7 +63,9 @@ class ErrorHandlerTest extends TestCase
     {
         // unregister all error handlers
         while (true) {
-            if (is_null(set_error_handler(null))) break;
+            if (is_null(set_error_handler(null))) {
+                break;
+            }
         }
 
         $this->uut = new ErrorHandler();
@@ -77,7 +79,9 @@ class ErrorHandlerTest extends TestCase
     {
         // unregister all error handlers
         while (true) {
-            if (is_null(set_error_handler(null))) break;
+            if (is_null(set_error_handler(null))) {
+                break;
+            }
         }
 
         // re-register original error handler (if any)

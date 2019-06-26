@@ -96,8 +96,7 @@ class ServicesFactory extends AbstractSingletonFactory
     public function get(string ...$classIdentifiers)
     {
         $services = [];
-        foreach ($classIdentifiers as $classIdentifier)
-        {
+        foreach ($classIdentifiers as $classIdentifier) {
             $services[] = parent::create($classIdentifier, $this->getServiceOptions($classIdentifier));
         }
 

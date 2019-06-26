@@ -72,7 +72,9 @@ class ErrorHandler extends AbstractService implements RuntimeEventHandlerInterfa
      */
     public function restorePreviousHandler()
     {
-        if (!is_callable($this->previousHandler)) return $this;
+        if (!is_callable($this->previousHandler)) {
+            return $this;
+        }
 
         set_error_handler($this->previousHandler);
         $this->previousHandler = null;

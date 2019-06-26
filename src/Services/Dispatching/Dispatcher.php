@@ -95,7 +95,9 @@ class Dispatcher extends AbstractService
     public function getRoutePath(string $name): string
     {
         $route = $this->routes->get($name);
-        if (is_null($route)) return '';
+        if (is_null($route)) {
+            return '';
+        }
 
         $path = $route->getPath();
         return !empty($path) ? $path : '/';
@@ -114,12 +116,18 @@ class Dispatcher extends AbstractService
     public function buildPath(string $routeName, array $namedArgs = []): string
     {
         $route = $this->routes->get($routeName);
-        if (is_null($route)) return '';
+        if (is_null($route)) {
+            return '';
+        }
 
         // add omitted args having defaults in route's definition
         foreach ($route->getDefaults() as $name => $default) {
-            if ($name == 'controller' || $name == 'action') continue;
-            if (array_key_exists($name, $namedArgs)) continue;
+            if ($name == 'controller' || $name == 'action') {
+                continue;
+            }
+            if (array_key_exists($name, $namedArgs)) {
+                continue;
+            }
 
             $namedArgs[$name] = $default;
         }
@@ -134,7 +142,9 @@ class Dispatcher extends AbstractService
         // e.g. /something/foo/{bar}
         $path = preg_replace('~(/{[^}]+})+$~', '', $path);
 
-        if (empty($path)) $path = '/';
+        if (empty($path)) {
+            $path = '/';
+        }
 
         return $path;
     }
@@ -199,7 +209,7 @@ class Dispatcher extends AbstractService
             $actionArgs = $this->buildActionArgs($controller, $action, $args);
         } catch (ClassNotFoundException $e) {
             throw new ResourceNotFoundException('controller [' . $parameters['controller'] . '] not found', 0, $e);
-        } catch(ControllerInspectionException $e) {
+        } catch (ControllerInspectionException $e) {
             throw new ResourceNotFoundException(
                 'action [' . $parameters['action'] . '] not found in controller [' . $parameters['controller'] . ']',
                 0,
@@ -268,7 +278,9 @@ class Dispatcher extends AbstractService
     {
         $args = [];
         foreach ($parameters as $key => $value) {
-            if (in_array($key, self::RESERVED_ROUTE_PARAMS)) continue;
+            if (in_array($key, self::RESERVED_ROUTE_PARAMS)) {
+                continue;
+            }
             $args[$key] = $value;
         }
 

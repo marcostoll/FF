@@ -70,5 +70,5 @@ abstract class AbstractController
     /**
      * @return TemplateRendererInterface
      */
-    protected abstract function getTemplateRenderer(): TemplateRendererInterface;
+    abstract protected function getTemplateRenderer(): TemplateRendererInterface;
 }

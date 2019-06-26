@@ -26,6 +26,4 @@ class SF extends ServicesFactory
     {
         return parent::getInstance();
     }
-
-
 }

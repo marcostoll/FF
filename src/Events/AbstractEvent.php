@@ -63,7 +63,9 @@ abstract class AbstractEvent implements ClassIdentifierAwareInterface
         $className = get_called_class();
         $needle = '\\' . self::COMMON_NS_SUFFIX . '\\';
         $pos = strpos($className, $needle);
-        if ($pos === false) return $className;
+        if ($pos === false) {
+            return $className;
+        }
 
         return substr($className, $pos + strlen($needle));
     }
