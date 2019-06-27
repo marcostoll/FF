@@ -62,6 +62,9 @@
             <a href="#coverage">Coverage</a>
           </li>
           <li>
+            <a href="#violations">Violations</a>
+          </li>
+          <li>
             <a href="#constants">Constants</a>
           </li>
           <li>
@@ -91,7 +94,7 @@
                     </li></ul><ul class="none"><li>// Inherited members from <span title="FF\Services\AbstractService">AbstractService</span></li><li>protected  <a href="#members">$options</a>;
                         </li></ul><ul class="none"><li>// methods</li><li>public <span title="RouteCollection">RouteCollection</span> <a title="FF\Services\Dispatching\Dispatcher" href="../classes/FF_Services_Dispatching_Dispatcher/getRoutes.xhtml">getRoutes</a>()
                     </li><li>public $this <a title="FF\Services\Dispatching\Dispatcher" href="../classes/FF_Services_Dispatching_Dispatcher/setRoutes.xhtml">setRoutes</a>()
-                    </li><li>public bool <a title="FF\Services\Dispatching\Dispatcher" href="../classes/FF_Services_Dispatching_Dispatcher/getFireEvents.xhtml">getFireEvents</a>()
+                    </li><li>public bool <a title="FF\Services\Dispatching\Dispatcher" href="../classes/FF_Services_Dispatching_Dispatcher/hasFireEvents.xhtml">hasFireEvents</a>()
                     </li><li>public $this <a title="FF\Services\Dispatching\Dispatcher" href="../classes/FF_Services_Dispatching_Dispatcher/setFireEvents.xhtml">setFireEvents</a>()
                     </li><li>public string <a title="FF\Services\Dispatching\Dispatcher" href="../classes/FF_Services_Dispatching_Dispatcher/getRoutePath.xhtml">getRoutePath</a>()
                     </li><li>public string <a title="FF\Services\Dispatching\Dispatcher" href="../classes/FF_Services_Dispatching_Dispatcher/buildPath.xhtml">buildPath</a>()
@@ -135,6 +138,26 @@
             <td class="nummeric"> / </td>
           </tr>
         </table>
+        <h2 id="violations">Violations</h2>
+        <div class="styled">
+          <h3>PHPMessDetector</h3>
+          <table class="styled">
+            <thead>
+              <tr>
+                <th>Line</th>
+                <th>Rule</th>
+                <th>Message</th>
+              </tr>
+            </thead>
+            <tr>
+              <td class="line">39 - 356</td>
+              <td>
+                <a href="http://phpmd.org/rules/design.html#couplingbetweenobjects" target="_blank" title="Design Rules">CouplingBetweenObjects</a>
+              </td>
+              <td>The class Dispatcher has a coupling between objects value of 17. Consider to reduce the number of dependencies under 13.</td>
+            </tr>
+          </table>
+        </div>
         <h2 id="constants">Constants</h2>
         <table class="styled">
           <thead>
@@ -190,13 +213,13 @@
                 — Dispatches a request</li>
             <li id="forward"><a title="FF\Services\Dispatching\Dispatcher" href="../classes/FF_Services_Dispatching_Dispatcher/forward.xhtml">forward()</a>
                 — Forwards to another controller action</li>
-            <li id="getFireEvents">
-              <a title="FF\Services\Dispatching\Dispatcher" href="../classes/FF_Services_Dispatching_Dispatcher/getFireEvents.xhtml">getFireEvents()</a>
-            </li>
             <li id="getRoutePath"><a title="FF\Services\Dispatching\Dispatcher" href="../classes/FF_Services_Dispatching_Dispatcher/getRoutePath.xhtml">getRoutePath()</a>
                 — Retrieves a route's path by name</li>
             <li id="getRoutes">
               <a title="FF\Services\Dispatching\Dispatcher" href="../classes/FF_Services_Dispatching_Dispatcher/getRoutes.xhtml">getRoutes()</a>
+            </li>
+            <li id="hasFireEvents">
+              <a title="FF\Services\Dispatching\Dispatcher" href="../classes/FF_Services_Dispatching_Dispatcher/hasFireEvents.xhtml">hasFireEvents()</a>
             </li>
             <li id="match"><a title="FF\Services\Dispatching\Dispatcher" href="../classes/FF_Services_Dispatching_Dispatcher/match.xhtml">match()</a>
                 — Retrieves parameters of a matching route for the request given</li>
@@ -240,6 +263,16 @@
         </div>
         <h2 id="history">History</h2>
         <ul class="styled history">
+          <li>
+            <h3>2019-06-27T10:27:43+02:00 (commit #<span title="5ba3f8efe8c01ddbc86e38bd8635e5686d48e133">5ba3f8e</span>)</h3>
+            <div>
+              <p>
+                        Author: Marco Stoll (marco.stoll@rocketmail.com) /
+                        Commiter: Marco Stoll (marco.stoll@rocketmail.com)
+                    </p>
+              <pre class="wrapped">[FEATURE] add phpmd</pre>
+            </div>
+          </li>
           <li>
             <h3>2019-06-26T12:47:05+02:00 (commit #<span title="6d7d5f111e89497807e5b414a08fd7b5627d78a4">6d7d5f1</span>)</h3>
             <div>

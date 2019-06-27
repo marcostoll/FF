@@ -62,6 +62,9 @@
             <a href="#coverage">Coverage</a>
           </li>
           <li>
+            <a href="#violations">Violations</a>
+          </li>
+          <li>
             <a href="#constants">Constants</a>
           </li>
           <li>
@@ -91,7 +94,7 @@
             {<br/><ul class="none"><li>// constants</li><li>const FATAL_ERRORS = ;</li></ul><ul class="none"><li>// Inherited constants from <a title="FF\Services\AbstractService" href="../classes/FF_Services_AbstractService.xhtml">AbstractService</a></li><li>const <a href="#COMMON_NS_SUFFIX">COMMON_NS_SUFFIX</a> = 'Services';</li></ul><ul class="none"><li>// members</li><li>protected <span title="FF\Services\Runtime\bool">bool</span> <a href="#members">$forceExit</a>;
                     </li></ul><ul class="none"><li>// Inherited members from <span title="FF\Services\AbstractService">AbstractService</span></li><li>protected  <a href="#members">$options</a>;
                         </li></ul><ul class="none"><li>// methods</li><li>public $this <a title="FF\Services\Runtime\ShutdownHandler" href="../classes/FF_Services_Runtime_ShutdownHandler/register.xhtml">register</a>()
-                    </li><li>public bool <a title="FF\Services\Runtime\ShutdownHandler" href="../classes/FF_Services_Runtime_ShutdownHandler/getForceExit.xhtml">getForceExit</a>()
+                    </li><li>public bool <a title="FF\Services\Runtime\ShutdownHandler" href="../classes/FF_Services_Runtime_ShutdownHandler/hasForceExit.xhtml">hasForceExit</a>()
                     </li><li>public $this <a title="FF\Services\Runtime\ShutdownHandler" href="../classes/FF_Services_Runtime_ShutdownHandler/setForceExit.xhtml">setForceExit</a>()
                     </li><li>public void <a title="FF\Services\Runtime\ShutdownHandler" href="../classes/FF_Services_Runtime_ShutdownHandler/onShutdown.xhtml">onShutdown</a>()
                     </li><li>protected void <a title="FF\Services\Runtime\ShutdownHandler" href="../classes/FF_Services_Runtime_ShutdownHandler/initialize.xhtml">initialize</a>()
@@ -134,6 +137,26 @@
             <td class="nummeric"> / </td>
           </tr>
         </table>
+        <h2 id="violations">Violations</h2>
+        <div class="styled">
+          <h3>PHPMessDetector</h3>
+          <table class="styled">
+            <thead>
+              <tr>
+                <th>Line</th>
+                <th>Rule</th>
+                <th>Message</th>
+              </tr>
+            </thead>
+            <tr>
+              <td class="line">102</td>
+              <td>
+                <a href="http://phpmd.org/rules/design.html#exitexpression" target="_blank" title="Design Rules">ExitExpression</a>
+              </td>
+              <td>The method onShutdown() contains an exit expression.</td>
+            </tr>
+          </table>
+        </div>
         <h2 id="constants">Constants</h2>
         <table class="styled">
           <thead>
@@ -174,8 +197,8 @@
           </ul>
           <h4>public</h4>
           <ul>
-            <li id="getForceExit">
-              <a title="FF\Services\Runtime\ShutdownHandler" href="../classes/FF_Services_Runtime_ShutdownHandler/getForceExit.xhtml">getForceExit()</a>
+            <li id="hasForceExit">
+              <a title="FF\Services\Runtime\ShutdownHandler" href="../classes/FF_Services_Runtime_ShutdownHandler/hasForceExit.xhtml">hasForceExit()</a>
             </li>
             <li id="onShutdown"><a title="FF\Services\Runtime\ShutdownHandler" href="../classes/FF_Services_Runtime_ShutdownHandler/onShutdown.xhtml">onShutdown()</a>
                 — Generic shutdown handler callback</li>
@@ -218,6 +241,16 @@
         </div>
         <h2 id="history">History</h2>
         <ul class="styled history">
+          <li>
+            <h3>2019-06-27T10:27:43+02:00 (commit #<span title="5ba3f8efe8c01ddbc86e38bd8635e5686d48e133">5ba3f8e</span>)</h3>
+            <div>
+              <p>
+                        Author: Marco Stoll (marco.stoll@rocketmail.com) /
+                        Commiter: Marco Stoll (marco.stoll@rocketmail.com)
+                    </p>
+              <pre class="wrapped">[FEATURE] add phpmd</pre>
+            </div>
+          </li>
           <li>
             <h3>2019-06-26T12:47:05+02:00 (commit #<span title="6d7d5f111e89497807e5b414a08fd7b5627d78a4">6d7d5f1</span>)</h3>
             <div>

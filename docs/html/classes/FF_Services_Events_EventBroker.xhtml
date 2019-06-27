@@ -62,6 +62,9 @@
             <a href="#coverage">Coverage</a>
           </li>
           <li>
+            <a href="#violations">Violations</a>
+          </li>
+          <li>
             <a href="#constants">Constants</a>
           </li>
           <li>
@@ -136,6 +139,26 @@
             <td class="nummeric"> / </td>
           </tr>
         </table>
+        <h2 id="violations">Violations</h2>
+        <div class="styled">
+          <h3>PHPMessDetector</h3>
+          <table class="styled">
+            <thead>
+              <tr>
+                <th>Line</th>
+                <th>Rule</th>
+                <th>Message</th>
+              </tr>
+            </thead>
+            <tr>
+              <td class="line">45</td>
+              <td>
+                <a href="http://phpmd.org/rules/cleancode.html#staticaccess" target="_blank" title="Clean Code Rules">StaticAccess</a>
+              </td>
+              <td>Avoid using static access to class '\FF\Factories\EventsFactory' in method 'initialize'.</td>
+            </tr>
+          </table>
+        </div>
         <h2 id="constants">Constants</h2>
         <table class="styled">
           <thead>
