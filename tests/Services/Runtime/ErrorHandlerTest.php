@@ -131,11 +131,11 @@ class ErrorHandlerTest extends TestCase
     /**
      * Tests the namesake method/feature
      */
-    public function testSetGetBypassPhpErrorHandling()
+    public function testSetHasBypassPhp()
     {
-        $same = $this->uut->setBypassPhpErrorHandling(false);
+        $same = $this->uut->setBypassPhp(false);
         $this->assertSame($this->uut, $same);
-        $this->assertFalse($this->uut->getBypassPhpErrorHandling());
+        $this->assertFalse($this->uut->hasBypassPhp());
     }
 
     /**

@@ -71,7 +71,7 @@ class Dispatcher extends AbstractService
     /**
      * @return bool
      */
-    public function getFireEvents(): bool
+    public function hasFireEvents(): bool
     {
         return $this->fireEvents;
     }
@@ -311,10 +311,10 @@ class Dispatcher extends AbstractService
                             . 'of controller [' . get_class($controller) . ']'
                         );
                     }
-                    $methodArgs[] = $param->getDefaultValue();
-                } else {
-                    $methodArgs[] = $args[$name];
+                    $args[$name] = $param->getDefaultValue();
                 }
+
+                $methodArgs[] = $args[$name];
             }
         } catch (\ReflectionException $e) {
             throw new ControllerInspectionException(

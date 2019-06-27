@@ -76,11 +76,11 @@ class ShutdownHandlerTest extends TestCase
     /**
      * Tests the namesake method/feature
      */
-    public function testSetGetForceExit()
+    public function testSetHasForceExit()
     {
         $same = $this->uut->setForceExit(false);
         $this->assertSame($this->uut, $same);
-        $this->assertFalse($this->uut->getForceExit());
+        $this->assertFalse($this->uut->hasForceExit());
     }
 
     /**

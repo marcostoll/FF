@@ -17,8 +17,8 @@ use FF\Services\AbstractService;
  *
  * Options:
  *
- *  - error-types                   : int (default: E_ALL)      - error type bit mask to trigger this handler
- *  - bypass-php-error-handling     . bool (default: false)     - whether to suppress php's built-in error handling
+ *  - error-types   : int (default: E_ALL)      - error type bit mask to trigger this handler
+ *  - bypass-php    : bool (default: false)     - whether to suppress php's built-in error handling
  *
  * @package FF\Services\Runtime
  */
@@ -37,7 +37,7 @@ class ErrorHandler extends AbstractService implements RuntimeEventHandlerInterfa
     /**
      * @var bool
      */
-    protected $bypassPhpErrorHandling = false;
+    protected $bypassPhp = false;
 
     /**
      * {@inheritdoc}
@@ -103,18 +103,18 @@ class ErrorHandler extends AbstractService implements RuntimeEventHandlerInterfa
     /**
      * @return bool
      */
-    public function getBypassPhpErrorHandling(): bool
+    public function hasBypassPhp(): bool
     {
-        return $this->bypassPhpErrorHandling;
+        return $this->bypassPhp;
     }
 
     /**
-     * @param bool $bypassPhpErrorHandling
+     * @param bool $bypassPhp
      * @return $this
      */
-    public function setBypassPhpErrorHandling(bool $bypassPhpErrorHandling)
+    public function setBypassPhp(bool $bypassPhp)
     {
-        $this->bypassPhpErrorHandling = $bypassPhpErrorHandling;
+        $this->bypassPhp = $bypassPhp;
         return $this;
     }
 
@@ -139,7 +139,7 @@ class ErrorHandler extends AbstractService implements RuntimeEventHandlerInterfa
     ): bool {
         $this->fire('Runtime\Error', $errNo, $errMsg, $errFile, $errLine, $errContext);
 
-        return $this->bypassPhpErrorHandling;
+        return $this->bypassPhp;
     }
 
     /**
@@ -150,6 +150,6 @@ class ErrorHandler extends AbstractService implements RuntimeEventHandlerInterfa
         parent::initialize($options);
 
         $this->errorTypes = $this->getOption('error-types', E_ALL);
-        $this->bypassPhpErrorHandling = $this->getOption('bypass-php-error-handling', false);
+        $this->bypassPhp = $this->getOption('bypass-php', false);
     }
 }

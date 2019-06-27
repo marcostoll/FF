@@ -90,11 +90,9 @@
                 </source>
 
                 <!-- PHPMessDetector -->
-                <!--
                 <source type="pmd">
-                    <file name="pmd.xml" />
+                    <file name="../logs/phpmd/report.xml" />
                 </source>
-                -->
 
                 <!-- PHPUnit Coverage XML -->
                 <!-- <source type="phpunit">  -->

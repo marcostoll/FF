@@ -71,15 +71,15 @@ class ExceptionHandler extends AbstractService implements RuntimeEventHandlerInt
      * To prevent potential loops any unhandled exception thrown while processing the Exception event
      * is caught and discarded.
      *
-     * @param \Throwable $e
+     * @param \Throwable $throwable
      * @fires Runtime\Exception
      * @see http://php.net/set_exception_handler
      */
-    public function onException(\Throwable $e)
+    public function onException(\Throwable $throwable)
     {
         try {
-            $this->fire('Runtime\Exception', $e);
-        } catch (\Exception $e) {
+            $this->fire('Runtime\Exception', $throwable);
+        } catch (\Exception $exception) {
             // do not handle exceptions thrown while
             // processing the Exception event
         }

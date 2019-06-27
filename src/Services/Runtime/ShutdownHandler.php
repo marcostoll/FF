@@ -55,7 +55,7 @@ class ShutdownHandler extends AbstractService implements RuntimeEventHandlerInte
     /**
      * @return bool
      */
-    public function getForceExit(): bool
+    public function hasForceExit(): bool
     {
         return $this->forceExit;
     }

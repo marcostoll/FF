@@ -81,7 +81,7 @@ class TwigRenderer extends AbstractService implements TemplateRendererInterface
     /**
      * @return bool
      */
-    public function getFireEvents(): bool
+    public function hasFireEvents(): bool
     {
         return $this->fireEvents;
     }

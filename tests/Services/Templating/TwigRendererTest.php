@@ -105,12 +105,12 @@ class TwigRendererTest extends TestCase
     /**
      * Tests the namesake method/feature
      */
-    public function testSetGetFireEvents()
+    public function testSetHasFireEvents()
     {
         $value = false;
         $same = $this->uut->setFireEvents($value);
         $this->assertSame($this->uut, $same);
-        $this->assertEquals($value, $this->uut->getFireEvents());
+        $this->assertEquals($value, $this->uut->hasFireEvents());
     }
 
     /**
