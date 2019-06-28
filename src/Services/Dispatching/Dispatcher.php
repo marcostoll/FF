@@ -348,9 +348,8 @@ class Dispatcher extends AbstractService
     {
         if (!isset($options['routing-yaml']) || empty($options['routing-yaml'])) {
             $errors[] = 'missing or empty mandatory option [routing-yaml]';
-            return false;
         }
 
-        return true;
+        return empty($errors);
     }
 }

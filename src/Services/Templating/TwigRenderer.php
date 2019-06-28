@@ -178,9 +178,8 @@ class TwigRenderer extends AbstractService implements TemplateRendererInterface
     {
         if (!isset($options['template-dir']) || empty($options['template-dir'])) {
             $errors[] = 'missing or empty mandatory option [template-dir]';
-            return false;
         }
 
-        return true;
+        return empty($errors);
     }
 }
