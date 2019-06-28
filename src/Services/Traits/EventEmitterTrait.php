@@ -21,7 +21,32 @@ use FF\Services\Events\EventBroker;
 trait EventEmitterTrait
 {
     /**
+     * @var bool
+     */
+    protected $fireEvents = true;
+
+    /**
+     * @return bool
+     */
+    public function hasFireEvents(): bool
+    {
+        return $this->fireEvents;
+    }
+
+    /**
+     * @param bool $fireEvents
+     * @return $this
+     */
+    public function setFireEvents(bool $fireEvents)
+    {
+        $this->fireEvents = $fireEvents;
+        return $this;
+    }
+
+    /**
      * Creates an event instance and fires it
+     *
+     * Does nothing if $fireEvents is turned of.
      *
      * Delegates the execution to the EventBroker provided by the ServiceFactory.
      *
@@ -31,6 +56,10 @@ trait EventEmitterTrait
      */
     protected function fire(string $classIdentifier, ...$args)
     {
+        if (!$this->hasFireEvents()) {
+            return $this;
+        }
+
         /** @var EventBroker $eventBroker */
         static $eventBroker = null;
 
