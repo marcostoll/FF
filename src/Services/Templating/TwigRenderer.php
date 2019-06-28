@@ -56,11 +56,6 @@ class TwigRenderer extends AbstractService implements TemplateRendererInterface
     protected $twig;
 
     /**
-     * @var bool
-     */
-    protected $fireEvents;
-
-    /**
      * @return Environment
      */
     public function getTwig(): Environment
@@ -75,24 +70,6 @@ class TwigRenderer extends AbstractService implements TemplateRendererInterface
     public function setTwig(Environment $twig)
     {
         $this->twig = $twig;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasFireEvents(): bool
-    {
-        return $this->fireEvents;
-    }
-
-    /**
-     * @param bool $fireEvents
-     * @return $this
-     */
-    public function setFireEvents(bool $fireEvents)
-    {
-        $this->fireEvents = $fireEvents;
         return $this;
     }
 

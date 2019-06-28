@@ -12,6 +12,7 @@ namespace FF\Tests\Services;
 
 use FF\Services\AbstractService;
 use FF\Services\Exceptions\ConfigurationException;
+use FF\Services\Traits\EventEmitterTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -78,6 +79,17 @@ class AbstractServiceTest extends TestCase
     public function testGetClassIdentifier()
     {
         $this->assertEquals('MyService', MyService::getClassIdentifier());
+    }
+
+    /**
+     * Tests the namesake method/feature
+     */
+    public function testEmitterFireSetTasEventEvents()
+    {
+        $value = true;
+        $same = $this->uut->setFireEvents($value);
+        $this->assertSame($this->uut, $same);
+        $this->assertEquals($value, $this->uut->hasFireEvents());
     }
 }
 
