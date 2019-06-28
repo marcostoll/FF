@@ -20,14 +20,14 @@ class RenderedDocument
     /**
      * @var string
      */
-    private $contents;
+    protected $contents;
 
     /**
      * @param string $contents
      */
     public function __construct(string $contents)
     {
-        $this->setContents($contents);
+        $this->contents = $contents;
     }
 
     /**
