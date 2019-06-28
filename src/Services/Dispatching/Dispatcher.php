@@ -46,11 +46,6 @@ class Dispatcher extends AbstractService
     protected $routes;
 
     /**
-     * @var bool
-     */
-    protected $fireEvents;
-
-    /**
      * @return RouteCollection
      */
     public function getRoutes(): RouteCollection
@@ -65,24 +60,6 @@ class Dispatcher extends AbstractService
     public function setRoutes(RouteCollection $routes)
     {
         $this->routes = $routes;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasFireEvents(): bool
-    {
-        return $this->fireEvents;
-    }
-
-    /**
-     * @param bool $fireEvents
-     * @return $this
-     */
-    public function setFireEvents(bool $fireEvents)
-    {
-        $this->fireEvents = $fireEvents;
         return $this;
     }
 
@@ -193,9 +170,7 @@ class Dispatcher extends AbstractService
      */
     public function dispatch(Request $request): Response
     {
-        if ($this->fireEvents) {
-            $this->fire('Dispatching\PreDispatch', $request);
-        }
+        $this->fire('Dispatching\PreDispatch', $request);
 
         $parameters = $this->match($request);
         if (is_null($parameters)) {
@@ -217,16 +192,12 @@ class Dispatcher extends AbstractService
             );
         }
 
-        if ($this->fireEvents) {
-            $this->fire('Dispatching\PostRoute', $request, $controller, $action, $args);
-        }
+        $this->fire('Dispatching\PostRoute', $request, $controller, $action, $args);
 
         /** @var Response $response */
         $response = call_user_func_array([$controller, $action], $actionArgs);
 
-        if ($this->fireEvents) {
-            $this->fire('Dispatching\PostDispatch', $response, $controller, $action, $actionArgs);
-        }
+        $this->fire('Dispatching\PostDispatch', $response, $controller, $action, $actionArgs);
 
         return $response;
     }
@@ -250,9 +221,7 @@ class Dispatcher extends AbstractService
             $controller = ControllersFactory::getInstance()->create($controller);
         }
 
-        if ($this->fireEvents) {
-            $this->fire('Dispatching\PreForward', $controller, $action, $args);
-        }
+        $this->fire('Dispatching\PreForward', $controller, $action, $args);
 
         if (!method_exists($controller, $action) || !is_callable([$controller, $action])) {
             throw new \InvalidArgumentException(
@@ -348,9 +317,8 @@ class Dispatcher extends AbstractService
     {
         if (!isset($options['routing-yaml']) || empty($options['routing-yaml'])) {
             $errors[] = 'missing or empty mandatory option [routing-yaml]';
-            return false;
         }
 
-        return true;
+        return empty($errors);
     }
 }

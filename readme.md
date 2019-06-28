@@ -21,6 +21,7 @@ Currently **FF** is composed of the following features:
 3. Runtime event handlers
 4. Templating and Twig as a Service
 5. Dispatching and Controllers
+6. Sessions
 
 More features will follow (see the Road Map section below).
 
@@ -433,11 +434,51 @@ Each concrete controller must implement the `getTemplateRenderer()` method. If y
         {
             return $this->render('hello-world.html.twig', ['msg' => 'Hello, World!']);
         }
-    }     
+    }  
+    
+# Sessions
+
+**FF**'s built-it **Session** service in essence just wraps php's session functions in an object oriented way. It lets you 
+`start()`, `regenerate()`, `writeClose()`, and `destroy()` sessions as well as `get()`, `set()`, and `unset()` values.
+
+The service can be configured using all the known `session.XYZ` options that the php session module defines. The service
+defines some different default though, mostly to enhance the default security behaviour regarding session cookies.
+
+## Defining Custom Session Save Handlers
+
+## Observing Session Events
+
+The **Session** service emits a number of events.
+
+The defined events are classic life cycle events fired at distinct moments in a session's life. Observing this
+kind of events lets you manipulate the session's state on your behalf.
+
+***Example: Adding data to the session right after start***
+
+    use FF\Events;
+    use FF\Factories\SF;
+    use FF\Services\Events\EventBroker;    
+
+    class MySessionObserver
+    {
+        /**
+         * Event handling callback
+         *
+         * @param Sessions\PostStart $event
+        public function onPostStart(Sessions\PostStart $event)
+        {
+            $event->getSession()->set('foo', 'bar');
+        }
+    }
+    
+    // subscribe to the Sessions\PostStart event
+    /** @var EventBroker $eventBroker */
+    $eventBroker = SF::i()->get('Events\EventBroker');
+    $eventBroker->subscribe([new MySessionObserver, 'onPostStart'], 'Sessions\PostStart');
 
 # Road Map
 
-- Sessions
+- Session Handlers
 - Security
 - CLI
 - ORM

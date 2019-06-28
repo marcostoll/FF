@@ -117,17 +117,6 @@ namespace FF\Tests\Services\Dispatching {
         /**
          * Tests the namesake method/feature
          */
-        public function testSetHasFireEvents()
-        {
-            $value = false;
-            $same = $this->uut->setFireEvents($value);
-            $this->assertSame($this->uut, $same);
-            $this->assertSame($value, $this->uut->hasFireEvents());
-        }
-
-        /**
-         * Tests the namesake method/feature
-         */
         public function testSetGetRoutes()
         {
             $value = new RouteCollection();

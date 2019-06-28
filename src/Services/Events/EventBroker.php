@@ -20,7 +20,7 @@ use FF\Services\AbstractService;
 /**
  * Class EventBroker
  *
- * @package FF\Services
+ * @package FF\Services\Events
  */
 class EventBroker extends AbstractService
 {
