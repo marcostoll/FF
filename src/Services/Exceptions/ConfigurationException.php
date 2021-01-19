@@ -12,6 +12,8 @@ namespace FF\Services\Exceptions;
 
 /**
  * Class ConfigurationException
+ *
+ * @package FF\Services\Exceptions
  */
 class ConfigurationException extends \RuntimeException
 {

@@ -16,10 +16,10 @@
     "php": ">=7.2",
     "fastforward/data-structures": "^1.0.0",
     "fastforward/factories": "^1.2.0",
-    "symfony/config": "~4.3",
-    "symfony/http-foundation": "~4.3",
-    "symfony/routing": "~4.3",
-    "symfony/yaml": "~4.3",
+    "symfony/config": "~5.2",
+    "symfony/http-foundation": "~5.2",
+    "symfony/routing": "~5.2",
+    "symfony/yaml": "~5.2",
     "twig/twig": "^2.0"
   },
   "require-dev": {
