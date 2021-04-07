@@ -74,20 +74,24 @@ class Bootstrap
      * and merges its values into the given $servicesYml.
      *
      * @param string $servicesYml
-     * @param string $environment
+     * @param array $replacements
+     * @param string|null $environment
      * @return $this
      * @throws BootstrapException
      */
-    public function initServiceFactory(string $servicesYml, string $environment = null)
+    public function initServiceFactory(string $servicesYml, array $replacements = [], string $environment = null)
     {
         if (!is_file($servicesYml) || !is_readable($servicesYml)) {
             throw new BootstrapException('services yml [' . $servicesYml . '] not found or not readable');
+        }
+        if (is_null($environment)) {
+            $environment = Registry::getInstance()->getField('environment');
         }
 
         try {
             $configParser = new ConfigParser();
 
-            $contents = $configParser->load($servicesYml);
+            $contents = $configParser->load($servicesYml, $replacements);
             $servicesConfig = $configParser->parse($contents);
 
             do {
@@ -95,9 +99,8 @@ class Bootstrap
                     break;
                 }
 
-                $environment = Registry::getInstance()->getField('environment');
                 $envYml = $this->buildEnvironmentServicesYmlFileName($servicesYml, $environment);
-                $envContents = $configParser->load($envYml);
+                $envContents = $configParser->load($envYml, $replacements);
                 if (empty($envContents)) {
                     // do nothing if no env-specific config file is present
                     break;
@@ -115,6 +118,25 @@ class Bootstrap
         return $this;
     }
 
+    /**
+     * Invoke an arbitrary callable
+     *
+     * Any argument beyond the first will be passed to the callable in the given order.
+     *
+     * @param callable $callable
+     * @return $this
+     */
+    public function invoke(callable $callable)
+    {
+        $args = array_slice(func_get_args(), 1);
+        if (empty($args)) {
+            $callable();
+        } else {
+            call_user_func_array($callable, $args);
+        }
+
+        return $this;
+    }
 
     /**
      * Retrieves the file name with the suffix injected
