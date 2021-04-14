@@ -47,12 +47,12 @@ abstract class AbstractController
      * @param array $args
      * @return Response
      */
-    protected function forward($controller, string $action, ...$args)
+    protected function forward($controller, string $action, array $args = []): Response
     {
         /** @var Dispatcher $dispatcher */
-        $dispatcher = SF::i()->get('dispatching/dispatcher');
+        $dispatcher = SF::i()->get('Dispatching\\Dispatcher');
 
-        return $dispatcher->forward($controller, $action, ...$args);
+        return $dispatcher->forward($controller, $action, $args);
     }
 
     /**

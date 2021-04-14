@@ -28,6 +28,7 @@ class Bootstrap
      * Environment labels
      */
     const ENV_PROD = 'production';
+    const ENV_STAGING = 'staging';
     const ENV_DEV = 'development';
     const ENV_TEST = 'testing';
 
@@ -150,7 +151,8 @@ class Bootstrap
         string $servicesYml,
         string $environment,
         string $delimiter = '-'
-    ) {
+    ): string
+    {
         $pathInfo = pathinfo($servicesYml);
 
         if (!isset($pathInfo['extension'])) {

@@ -57,7 +57,7 @@ class Dispatcher extends AbstractService
      * @param RouteCollection $routes
      * @return $this
      */
-    public function setRoutes(RouteCollection $routes)
+    public function setRoutes(RouteCollection $routes): Dispatcher
     {
         $this->routes = $routes;
         return $this;
@@ -215,7 +215,7 @@ class Dispatcher extends AbstractService
      * @throws \InvalidArgumentException action not callable
      * @fires Dispatching\PreForward
      */
-    public function forward($controller, string $action, ...$args)
+    public function forward($controller, string $action, array $args = [])
     {
         if (is_string($controller)) {
             $controller = ControllersFactory::getInstance()->create($controller);
