@@ -350,6 +350,8 @@ class Session extends AbstractService
             if (!($sessionHandler instanceof \SessionHandlerInterface)) {
                 $errors[] = '[' . $options['custom_handler'] . '] is not a \SessionHandlerInterface';
             }
+
+            $this->setSaveHandler($sessionHandler);
         } catch (ClassNotFoundException | ConfigurationException $exception) {
             $errors[] = 'unable to retrieve [' . $options['custom_handler'] . '] from the service factory - '
                 . '[' . (string)$exception . ']';
