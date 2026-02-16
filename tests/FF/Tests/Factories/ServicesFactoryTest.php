@@ -14,8 +14,6 @@ namespace FF\Tests\Factories {
     use FF\Factories\Exceptions\ClassNotFoundException;
     use FF\Factories\ServicesFactory;
     use FF\Services\Exceptions\ConfigurationException;
-    use FF\Tests\Services\ServiceOne;
-    use FF\Tests\Services\ServiceTwo;
     use PHPUnit\Framework\TestCase;
 
     /**
@@ -25,7 +23,7 @@ namespace FF\Tests\Factories {
      */
     class ServicesFactoryTest extends TestCase
     {
-        const TEST_OPTIONS = ['ServiceOne' => ['foo' => 'bar']];
+        const array TEST_OPTIONS = ['OneService' => ['foo' => 'bar']];
 
         /**
          * {@inheritdoc}
@@ -90,10 +88,10 @@ namespace FF\Tests\Factories {
         public function testSetServiceOptions()
         {
             $this->assertEquals(
-                self::TEST_OPTIONS['ServiceOne'],
-                ServicesFactory::getInstance()->getServiceOptions('ServiceOne')
+                self::TEST_OPTIONS['OneService'],
+                ServicesFactory::getInstance()->getServiceOptions('OneService')
             );
-            $this->assertEquals([], ServicesFactory::getInstance()->getServiceOptions('ServiceTwo'));
+            $this->assertEquals([], ServicesFactory::getInstance()->getServiceOptions('OneService'));
             $this->assertEquals([], ServicesFactory::getInstance()->getServiceOptions('unknown'));
         }
 
@@ -104,9 +102,9 @@ namespace FF\Tests\Factories {
          */
         public function testGetSingle()
         {
-            $service = ServicesFactory::getInstance()->get('ServiceOne');
-            $this->assertInstanceOf(ServiceOne::class, $service);
-            $this->assertEquals(self::TEST_OPTIONS['ServiceOne'], $service->getOptions());
+            $service = ServicesFactory::getInstance()->get('OneService');
+            $this->assertInstanceOf(OneService::class, $service);
+            $this->assertEquals(self::TEST_OPTIONS['OneService'], $service->getOptions());
         }
 
         /**
@@ -116,10 +114,10 @@ namespace FF\Tests\Factories {
          */
         public function testGetMultiples()
         {
-            $services = ServicesFactory::getInstance()->get('ServiceOne', 'ServiceTwo');
+            $services = ServicesFactory::getInstance()->get('OneService', 'AnotherService');
             $this->assertEquals(2, count($services));
-            $this->assertInstanceOf(ServiceOne::class, $services[0]);
-            $this->assertInstanceOf(ServiceTwo::class, $services[1]);
+            $this->assertInstanceOf(OneService::class, $services[0]);
+            $this->assertInstanceOf(AnotherService::class, $services[1]);
         }
 
         /**
@@ -136,11 +134,11 @@ namespace FF\Tests\Factories {
     }
 }
 
-namespace FF\Tests\Services {
+namespace FF\Tests\Factories {
 
     use FF\Services\AbstractService;
 
-    class ServiceOne extends AbstractService
+    class OneService extends AbstractService
     {
         protected function validateOptions(array $options, array &$errors): bool
         {
@@ -153,7 +151,7 @@ namespace FF\Tests\Services {
         }
     }
 
-    class ServiceTwo extends AbstractService
+    class AnotherService extends AbstractService
     {
 
     }

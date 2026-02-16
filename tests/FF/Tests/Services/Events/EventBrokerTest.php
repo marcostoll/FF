@@ -27,7 +27,7 @@ class EventBrokerTest extends TestCase
     /**
      * @var EventBroker
      */
-    protected $uut;
+    protected EventBroker $uut;
 
     /**
      * {@inheritdoc}
@@ -274,7 +274,7 @@ class ListenerB extends ListenerA
 
 class EventA extends AbstractEvent
 {
-    public $content;
+    public string $content;
 
     public function __construct(string $content)
     {

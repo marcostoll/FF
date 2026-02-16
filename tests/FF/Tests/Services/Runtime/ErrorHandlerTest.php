@@ -27,17 +27,17 @@ class ErrorHandlerTest extends TestCase
     /**
      * @var mixed
      */
-    protected static $currentHandler;
+    protected static mixed $currentHandler;
 
     /**
      * @var ErrorHandler
      */
-    protected $uut;
+    protected ErrorHandler $uut;
 
     /**
      * @var Error
      */
-    protected static $lastEvent;
+    protected static Error $lastEvent;
 
     /**
      * {@inheritdoc}
@@ -102,7 +102,7 @@ class ErrorHandlerTest extends TestCase
      * @param int $errNo
      * @param string $errMsg
      * @param string $errFile
-     * @param int $errLine
+     * @param int|null $errLine
      * @param array $errContext
      * @return boolean
      */
@@ -110,11 +110,10 @@ class ErrorHandlerTest extends TestCase
         int $errNo,
         string $errMsg,
         string $errFile = '',
-        int $errLine = null,
+        ?int $errLine = null,
         array $errContext = []
     ): bool {
         $this->fail('dummy handler should never be called [' . serialize(func_get_args()) . ']');
-        return false;
     }
 
     /**

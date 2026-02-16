@@ -37,19 +37,19 @@ namespace FF\Tests\Services\Dispatching {
      */
     class DispatcherTest extends TestCase
     {
-        const DEFAULT_OPTIONS = [
+        const array DEFAULT_OPTIONS = [
             'routing-yaml' => __DIR__ . '/routing/test-routing.yml'
         ];
 
         /**
          * @var AbstractEvent[]
          */
-        protected static $lastEvents;
+        protected static array $lastEvents;
 
         /**
          * @var Dispatcher
          */
-        protected $uut;
+        protected Dispatcher $uut;
 
         /**
          * {@inheritdoc}
@@ -99,7 +99,7 @@ namespace FF\Tests\Services\Dispatching {
          * @param string $requestUri
          * @return Request
          */
-        protected function buildRequest($requestUri)
+        protected function buildRequest(string $requestUri)
         {
             return new Request([], [], [], [], [], ['REQUEST_URI' => $requestUri]);
         }
@@ -309,7 +309,7 @@ namespace FF\Tests\Services\Dispatching {
             $response = $this->uut->forward(new HelloWorldController(), 'default');
 
             $this->assertInstanceOf(Response::class, $response);
-            $this->assertEquals($response->getContent(), 'default');
+            $this->assertEquals('default', $response->getContent());
         }
 
         /**
@@ -320,7 +320,7 @@ namespace FF\Tests\Services\Dispatching {
             $response = $this->uut->forward('HelloWorldController', 'default');
 
             $this->assertInstanceOf(Response::class, $response);
-            $this->assertEquals($response->getContent(), 'default');
+            $this->assertEquals('default', $response->getContent());
         }
 
         /**

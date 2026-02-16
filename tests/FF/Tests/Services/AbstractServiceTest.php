@@ -12,7 +12,6 @@ namespace FF\Tests\Services;
 
 use FF\Services\AbstractService;
 use FF\Services\Exceptions\ConfigurationException;
-use FF\Services\Traits\EventEmitterTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -22,12 +21,12 @@ use PHPUnit\Framework\TestCase;
  */
 class AbstractServiceTest extends TestCase
 {
-    const TEST_OPTIONS = ['foo' => 'bar'];
+    const array TEST_OPTIONS = ['foo' => 'bar'];
 
     /**
      * @var MyService
      */
-    protected $uut;
+    protected MyService $uut;
 
     /**
      * {@inheritdoc}

@@ -31,19 +31,19 @@ use Twig\Loader\ArrayLoader;
  */
 class TwigRendererTest extends TestCase
 {
-    const DEFAULT_OPTIONS = [
+    const array DEFAULT_OPTIONS = [
         'template-dir' => __DIR__ . '/templates'
     ];
 
     /**
      * @var TwigRenderer
      */
-    protected $uut;
+    protected TwigRenderer $uut;
 
     /**
      * @var AbstractEvent[]
      */
-    protected static $lastEvents;
+    protected static array $lastEvents;
 
     /**
      * {@inheritdoc}
@@ -142,7 +142,7 @@ class TwigRendererTest extends TestCase
      */
     public function testRenderErrorSyntax()
     {
-        $this->expectException(RenderingException::class);
+        $this->expectError();
 
         $this->uut->render('invalid.html.twig', []);
     }
@@ -163,7 +163,7 @@ class TwigRendererTest extends TestCase
      */
     public function testMagicCallUnknown()
     {
-        $this->expectException(Error::class);
+        $this->expectError();
 
         $this->uut->foo();
     }

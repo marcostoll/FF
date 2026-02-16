@@ -27,12 +27,12 @@ class ShutdownHandlerTest extends TestCase
     /**
      * @var ShutdownHandler
      */
-    protected $uut;
+    protected ShutdownHandler $uut;
 
     /**
      * @var Shutdown
      */
-    protected static $lastEvent;
+    protected static Shutdown $lastEvent;
 
     /**
      * {@inheritdoc}

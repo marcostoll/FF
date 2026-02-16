@@ -32,12 +32,12 @@ class ExceptionHandlerTest extends TestCase
     /**
      * @var ExceptionHandler
      */
-    protected $uut;
+    protected ExceptionHandler $uut;
 
     /**
      * @var Exception
      */
-    protected static $lastEvent;
+    protected static Exception $lastEvent;
 
     /**
      * {@inheritdoc}

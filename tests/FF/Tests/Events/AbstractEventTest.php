@@ -23,7 +23,7 @@ class AbstractEventTest extends TestCase
     /**
      * @var MyEvent
      */
-    protected $uut;
+    protected MyEvent $uut;
 
     /**
      * {@inheritdoc}

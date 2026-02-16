@@ -8,6 +8,8 @@
  */
 declare(strict_types=1);
 
+namespace FF\Tests\Services\Runtime;
+
 use FF\Services\Runtime\ConfigParser;
 use PHPUnit\Framework\TestCase;
 
@@ -21,7 +23,7 @@ class ConfigParserTest extends TestCase
     /**
      * @var ConfigParser
      */
-    protected $uut;
+    protected ConfigParser $uut;
 
     /**
      * {@inheritdoc}
