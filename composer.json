@@ -7,25 +7,25 @@
   "authors": [
     {
       "name": "Marco Stoll",
-      "email": "marco@fast-forward-encoding.de",
-      "homepage": "http://marcostoll.de",
+      "email": "info@marcostoll.de",
+      "homepage": "https://marcostoll.de",
       "role": "Developer"
     }
   ],
   "require": {
-    "php": ">=7.2",
+    "php": ">=8.4",
     "fastforward/data-structures": "^1.0.0",
     "fastforward/factories": "^1.2.0",
-    "symfony/config": "~5.2",
-    "symfony/http-foundation": "~5.2",
-    "symfony/routing": "~5.2",
-    "symfony/yaml": "~5.2",
-    "twig/twig": "^2.0"
+    "symfony/config": "~8.0",
+    "symfony/http-foundation": "~8.0",
+    "symfony/routing": "~8.0",
+    "symfony/yaml": "~8.0",
+    "twig/twig": "^3.23"
   },
   "require-dev": {
     "phpmd/phpmd" : "@stable",
-    "phpunit/phpunit": "^8",
-    "squizlabs/php_codesniffer": "^3",
+    "phpunit/phpunit": "^13",
+    "squizlabs/php_codesniffer": "^4",
     "theseer/phpdox": "*"
   },
   "repositories": [
