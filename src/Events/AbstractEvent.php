@@ -22,12 +22,12 @@ abstract class AbstractEvent implements ClassIdentifierAwareInterface
     /**
      * For use with the BaseNamespaceClassLocator of the EventsFactory
      */
-    const COMMON_NS_SUFFIX = 'Events';
+    const string COMMON_NS_SUFFIX = 'Events';
 
     /**
      * @var bool
      */
-    protected $isCanceled = false;
+    protected bool $isCanceled = false;
 
     /**
      * @return bool

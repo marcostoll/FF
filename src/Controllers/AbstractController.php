@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Class AbstractController
  *
- * Concrete sub classes should define one or more action methods.
+ * Concrete subclasses should define one or more action methods.
  *
  * Any action method must meet the following requirements:
  *      - must be public
@@ -34,7 +34,7 @@ abstract class AbstractController
     /**
      * For use with the BaseNamespaceClassLocator of the ControllersFactory
      */
-    const COMMON_NS_SUFFIX = 'Controllers';
+    const string COMMON_NS_SUFFIX = 'Controllers';
 
     /**
      * Forwards to another controller action
@@ -47,7 +47,7 @@ abstract class AbstractController
      * @param array $args
      * @return Response
      */
-    protected function forward($controller, string $action, array $args = []): Response
+    protected function forward(AbstractController|string $controller, string $action, array $args = []): Response
     {
         /** @var Dispatcher $dispatcher */
         $dispatcher = SF::i()->get('Dispatching\\Dispatcher');

@@ -23,7 +23,7 @@ trait EventEmitterTrait
     /**
      * @var bool
      */
-    protected $fireEvents = true;
+    protected bool $fireEvents = true;
 
     /**
      * @return bool
@@ -46,7 +46,7 @@ trait EventEmitterTrait
     /**
      * Creates an event instance and fires it
      *
-     * Does nothing if $fireEvents is turned of.
+     * Does nothing if $fireEvents is turned off.
      *
      * Delegates the execution to the EventBroker provided by the ServiceFactory.
      *

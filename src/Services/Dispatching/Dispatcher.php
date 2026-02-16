@@ -31,19 +31,19 @@ use Symfony\Component\Routing\RouteCollection;
  *
  * Options:
  *
- *  - routing-yaml  : string                    - path to routing yaml
+ *  - routing-yaml  : string                    - path to routing YAML
  *  - fire-events   : bool (default: false)     - whether to fire rendering events
  *
  * @package FF\Services\Dispatching
  */
 class Dispatcher extends AbstractService
 {
-    const RESERVED_ROUTE_PARAMS = ['controller', 'action', '_route'];
+    const array RESERVED_ROUTE_PARAMS = ['controller', 'action', '_route'];
 
     /**
      * @var RouteCollection
      */
-    protected $routes;
+    protected RouteCollection $routes;
 
     /**
      * @return RouteCollection
@@ -153,7 +153,7 @@ class Dispatcher extends AbstractService
             }
 
             return $parameters;
-        } catch (SymfonyResourceNotFoundException $e) {
+        } catch (SymfonyResourceNotFoundException) {
             return null;
         }
     }
@@ -215,7 +215,7 @@ class Dispatcher extends AbstractService
      * @throws \InvalidArgumentException action not callable
      * @fires Dispatching\PreForward
      */
-    public function forward($controller, string $action, array $args = [])
+    public function forward(AbstractController|string $controller, string $action, array $args = [])
     {
         if (is_string($controller)) {
             $controller = ControllersFactory::getInstance()->create($controller);
@@ -315,7 +315,7 @@ class Dispatcher extends AbstractService
      */
     protected function validateOptions(array $options, array &$errors): bool
     {
-        if (!isset($options['routing-yaml']) || empty($options['routing-yaml'])) {
+        if (empty($options['routing-yaml'])) {
             $errors[] = 'missing or empty mandatory option [routing-yaml]';
         }
 

@@ -23,7 +23,7 @@ class PreDispatch extends AbstractEvent
     /**
      * @var Request
      */
-    protected $request;
+    protected Request $request;
 
     /**
      * @param Request $request

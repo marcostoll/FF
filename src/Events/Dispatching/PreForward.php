@@ -23,17 +23,17 @@ class PreForward extends AbstractEvent
     /**
      * @var AbstractController
      */
-    protected $controller;
+    protected AbstractController $controller;
 
     /**
      * @var string
      */
-    protected $action;
+    protected string $action;
 
     /**
      * @var array
      */
-    protected $args = [];
+    protected array $args = [];
 
     /**
      * @param AbstractController $controller

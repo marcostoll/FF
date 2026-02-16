@@ -24,20 +24,20 @@ use FF\Services\Exceptions\ConfigurationException;
 class ServicesFactory extends AbstractSingletonFactory
 {
     /**
-     * @var ServicesFactory
+     * @var ServicesFactory|null
      */
-    protected static $instance;
+    protected static ?ServicesFactory $instance;
 
     /**
      * @var array
      */
-    protected $servicesOptions;
+    protected array $servicesOptions;
 
     /**
      * Uses a BaseNamespaceClassLocator pre-configured with the 'Services' as common suffix and the FF namespace.
      *
      * @param array $servicesOptions
-     * @see \FF\Factories\ClassLocators\BaseNamespaceClassLocator
+     * @see BaseNamespaceClassLocator
      */
     public function __construct(array $servicesOptions = [])
     {
@@ -86,7 +86,7 @@ class ServicesFactory extends AbstractSingletonFactory
      *
      * Returns a single service instance if only one class identifier was given as argument.
      * Returns an array of service instances instead if two or more class identifiers were passed. The returned list
-     * will ordered in the same way as the class identifier arguments have been passed.
+     * will be ordered in the same way as the class identifier arguments have been passed.
      *
      * @param string[] $classIdentifiers
      * @return AbstractService|AbstractService[]

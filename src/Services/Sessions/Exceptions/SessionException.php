@@ -7,7 +7,7 @@
  * @filesource
  */
 
-namespace FF\Sessions\Session\Exceptions;
+namespace FF\Services\Sessions\Exceptions;
 
 /**
  * Class SessionException
@@ -16,8 +16,8 @@ namespace FF\Sessions\Session\Exceptions;
  */
 class SessionException extends \RuntimeException
 {
-    const ERROR_SESSION_START = 1;
-    const ERROR_SESSION_DESTROY = 2;
-    const ERROR_SESSION_REGENERATE = 3;
-    const ERROR_SESSION_SAVE_HANDLER = 4;
+    const int ERROR_SESSION_START = 1;
+    const int ERROR_SESSION_DESTROY = 2;
+    const int ERROR_SESSION_REGENERATE = 3;
+    const int ERROR_SESSION_SAVE_HANDLER = 4;
 }

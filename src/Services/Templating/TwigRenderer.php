@@ -53,7 +53,7 @@ class TwigRenderer extends AbstractService implements TemplateRendererInterface
     /**
      * @var Environment
      */
-    protected $twig;
+    protected Environment $twig;
 
     /**
      * @return Environment
@@ -129,7 +129,7 @@ class TwigRenderer extends AbstractService implements TemplateRendererInterface
             $backTrace = debug_backtrace();
             $errorMsg = 'Call to undefined method ' . __CLASS__ . '::' . $name . '() '
                 . 'in ' . $backTrace[0]['file'] . ' on line ' . $backTrace[0]['line'];
-            trigger_error($errorMsg, E_USER_ERROR);
+            trigger_error($errorMsg, E_ERROR);
         }
 
         return call_user_func_array($callable, $arguments);
@@ -153,7 +153,7 @@ class TwigRenderer extends AbstractService implements TemplateRendererInterface
      */
     protected function validateOptions(array $options, array &$errors): bool
     {
-        if (!isset($options['template-dir']) || empty($options['template-dir'])) {
+        if (empty($options['template-dir'])) {
             $errors[] = 'missing or empty mandatory option [template-dir]';
         }
 

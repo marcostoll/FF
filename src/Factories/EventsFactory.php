@@ -24,13 +24,13 @@ class EventsFactory extends AbstractFactory
     /**
      * @var EventsFactory
      */
-    protected static $instance;
+    protected static EventsFactory $instance;
 
     /**
      * Declared protected to prevent external usage.
      * Uses a BaseNamespaceClassLocator pre-configured with the 'Events' as common suffix and the FF namespace.
      *
-     * @see \FF\Factories\ClassLocators\BaseNamespaceClassLocator
+     * @see BaseNamespaceClassLocator
      */
     protected function __construct()
     {

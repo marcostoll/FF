@@ -24,22 +24,22 @@ class PostRoute extends AbstractEvent
     /**
      * @var Request
      */
-    protected $request;
+    protected Request $request;
 
     /**
      * @var AbstractController
      */
-    protected $controller;
+    protected AbstractController $controller;
 
     /**
      * @var string
      */
-    protected $action;
+    protected string $action;
 
     /**
      * @var array
      */
-    protected $args = [];
+    protected array $args = [];
 
     /**
      * @param Request $request
@@ -47,7 +47,7 @@ class PostRoute extends AbstractEvent
      * @param string $action
      * @param array $args
      */
-    public function __construct(Request $request, AbstractController $controller, $action, array $args = [])
+    public function __construct(Request $request, AbstractController $controller, string $action, array $args = [])
     {
         $this->request = $request;
         $this->controller = $controller;

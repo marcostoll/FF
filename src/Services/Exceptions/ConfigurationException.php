@@ -20,9 +20,9 @@ class ConfigurationException extends \RuntimeException
     /**
      * @param string[] $errors
      * @param int $code
-     * @param \Throwable $previous
+     * @param \Throwable|null $previous
      */
-    public function __construct(array $errors, int $code = 0, \Throwable $previous = null)
+    public function __construct(array $errors, int $code = 0, ?\Throwable $previous = null)
     {
         parent::__construct(implode(PHP_EOL, $errors), $code, $previous);
     }

@@ -24,12 +24,12 @@ class ControllersFactory extends AbstractSingletonFactory
     /**
      * @var ControllersFactory
      */
-    protected static $instance;
+    protected static ControllersFactory $instance;
 
     /**
      * Declared protected to prevent external usage.
      * Uses a BaseNamespaceClassLocator pre-configured with the 'Events' as common suffix and the FF namespace.
-     * @see \FF\Factories\ClassLocators\BaseNamespaceClassLocator
+     * @see BaseNamespaceClassLocator
      */
     protected function __construct()
     {

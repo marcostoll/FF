@@ -79,7 +79,7 @@ class ExceptionHandler extends AbstractService implements RuntimeEventHandlerInt
     {
         try {
             $this->fire('Runtime\Exception', $throwable);
-        } catch (\Exception $exception) {
+        } catch (\Throwable) {
             // do not handle exceptions thrown while
             // processing the Exception event
         }

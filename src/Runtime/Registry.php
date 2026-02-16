@@ -22,7 +22,7 @@ class Registry extends Record
     /**
      * @var Registry
      */
-    protected static $instance;
+    protected static Registry $instance;
 
     /**
      * Retrieves the singleton instance of this class

@@ -23,12 +23,12 @@ class PreRender extends AbstractEvent
     /**
      * @var string
      */
-    protected $template;
+    protected string $template;
 
     /**
      * @var Record
      */
-    protected $data;
+    protected Record $data;
 
     /**
      * @param string $template

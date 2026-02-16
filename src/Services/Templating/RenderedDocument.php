@@ -20,7 +20,7 @@ class RenderedDocument
     /**
      * @var string
      */
-    protected $contents;
+    protected string $contents;
 
     /**
      * @param string $contents

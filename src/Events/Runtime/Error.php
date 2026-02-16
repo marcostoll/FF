@@ -22,40 +22,40 @@ class Error extends AbstractEvent
     /**
      * @var int
      */
-    protected $errNo;
+    protected int $errNo;
 
     /**
      * @var string
      */
-    protected $errMsg;
+    protected string $errMsg;
 
     /**
      * @var string
      */
-    protected $errFile;
+    protected string $errFile;
 
     /**
      * @var int
      */
-    protected $errLine;
+    protected int $errLine;
 
     /**
      * @var array
      */
-    protected $errContext;
+    protected array $errContext;
 
     /**
      * @param int $errNo
      * @param string $errMsg
      * @param string $errFile
-     * @param int $errLine
+     * @param int|null $errLine
      * @param array $errContext
      */
     public function __construct(
         int $errNo,
         string $errMsg,
         string $errFile = '',
-        int $errLine = null,
+        ?int $errLine = null,
         array $errContext = []
     ) {
         $this->errNo = $errNo;

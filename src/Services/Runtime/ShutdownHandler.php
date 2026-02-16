@@ -26,7 +26,7 @@ class ShutdownHandler extends AbstractService implements RuntimeEventHandlerInte
     /**
      * List of codes indicating fatal errors
      */
-    const FATAL_ERRORS = [
+    const array FATAL_ERRORS = [
         E_ERROR,
         E_PARSE,
         E_CORE_ERROR,
@@ -38,7 +38,7 @@ class ShutdownHandler extends AbstractService implements RuntimeEventHandlerInte
     /**
      * @var bool
      */
-    protected $forceExit;
+    protected bool $forceExit;
 
     /**
      * {@inheritdoc}

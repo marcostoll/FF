@@ -23,7 +23,7 @@ class PostStart extends AbstractEvent
     /**
      * @var Session
      */
-    protected $session;
+    protected Session $session;
 
     /**
      * @param Session $session

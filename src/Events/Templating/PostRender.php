@@ -23,7 +23,7 @@ class PostRender extends AbstractEvent
     /**
      * @var RenderedDocument
      */
-    protected $doc;
+    protected RenderedDocument $doc;
 
     /**
      * @param RenderedDocument $doc

@@ -27,12 +27,12 @@ abstract class AbstractService implements ClassIdentifierAwareInterface
     /**
      * For use with the BaseNamespaceClassLocator of the ServicesFactory
      */
-    const COMMON_NS_SUFFIX = 'Services';
+    const string COMMON_NS_SUFFIX = 'Services';
 
     /**
      * @var array
      */
-    protected $options;
+    protected array $options;
 
     /**
      * @param array $options
@@ -57,10 +57,10 @@ abstract class AbstractService implements ClassIdentifierAwareInterface
      * If no option is present indexed with the given $key, the $default value is returned instead.
      *
      * @param string $key
-     * @param null $default
+     * @param mixed $default
      * @return mixed
      */
-    public function getOption(string $key, $default = null)
+    public function getOption(string $key, mixed $default = null)
     {
         return $this->options[$key] ?? $default;
     }

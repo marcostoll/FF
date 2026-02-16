@@ -32,12 +32,12 @@ class ErrorHandler extends AbstractService implements RuntimeEventHandlerInterfa
     /**
      * @var int
      */
-    protected $errorTypes;
+    protected int $errorTypes;
 
     /**
      * @var bool
      */
-    protected $bypassPhp = false;
+    protected bool $bypassPhp = false;
 
     /**
      * {@inheritdoc}
@@ -124,7 +124,7 @@ class ErrorHandler extends AbstractService implements RuntimeEventHandlerInterfa
      * @param int $errNo
      * @param string $errMsg
      * @param string $errFile
-     * @param int $errLine
+     * @param int|null $errLine
      * @param array $errContext
      * @return boolean
      * @fires Runtime\Error
@@ -134,7 +134,7 @@ class ErrorHandler extends AbstractService implements RuntimeEventHandlerInterfa
         int $errNo,
         string $errMsg,
         string $errFile = '',
-        int $errLine = null,
+        ?int $errLine = null,
         array $errContext = []
     ): bool {
         $this->fire('Runtime\Error', $errNo, $errMsg, $errFile, $errLine, $errContext);

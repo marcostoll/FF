@@ -22,7 +22,7 @@ class Exception extends AbstractEvent
     /**
      * @var \Throwable
      */
-    protected $exception;
+    protected \Throwable $exception;
 
     /**
      * @param \Throwable $exception

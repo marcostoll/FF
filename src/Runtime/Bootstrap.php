@@ -27,10 +27,10 @@ class Bootstrap
     /**
      * Environment labels
      */
-    const ENV_PROD = 'production';
-    const ENV_STAGING = 'staging';
-    const ENV_DEV = 'development';
-    const ENV_TEST = 'testing';
+    const string ENV_PROD = 'production';
+    const string ENV_STAGING = 'staging';
+    const string ENV_DEV = 'development';
+    const string ENV_TEST = 'testing';
 
     /**
      * Adds a namespace location to Composer's class loader
@@ -71,7 +71,7 @@ class Bootstrap
      * Initializes the services factory
      *
      * If $environment is omitted, tries to retrieve it from the Registry.
-     * If then an non-empty $environment is present, looks for an environment-specific services configuration
+     * If then a non-empty $environment is present, looks for an environment-specific services configuration
      * and merges its values into the given $servicesYml.
      *
      * @param string $servicesYml
@@ -80,7 +80,7 @@ class Bootstrap
      * @return $this
      * @throws BootstrapException
      */
-    public function initServiceFactory(string $servicesYml, array $replacements = [], string $environment = null)
+    public function initServiceFactory(string $servicesYml, array $replacements = [], ?string $environment = null)
     {
         if (!is_file($servicesYml) || !is_readable($servicesYml)) {
             throw new BootstrapException('services yml [' . $servicesYml . '] not found or not readable');

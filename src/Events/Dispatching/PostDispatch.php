@@ -24,22 +24,22 @@ class PostDispatch extends AbstractEvent
     /**
      * @var Response
      */
-    protected $response;
+    protected Response $response;
 
     /**
      * @var AbstractController
      */
-    protected $controller;
+    protected AbstractController $controller;
 
     /**
      * @var string
      */
-    protected $action;
+    protected string $action;
 
     /**
      * @var array
      */
-    protected $args;
+    protected array $args;
 
     /**
      * @param Response $response
@@ -47,7 +47,7 @@ class PostDispatch extends AbstractEvent
      * @param string $action
      * @param array $args
      */
-    public function __construct(Response $response, AbstractController $controller, $action, array $args = [])
+    public function __construct(Response $response, AbstractController $controller, string $action, array $args = [])
     {
         $this->response = $response;
         $this->controller = $controller;

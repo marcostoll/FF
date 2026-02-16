@@ -14,7 +14,7 @@ use FF\Factories\Exceptions\ClassNotFoundException;
 use FF\Factories\SF;
 use FF\Services\AbstractService;
 use FF\Services\Exceptions\ConfigurationException;
-use FF\Sessions\Session\Exceptions\SessionException;
+use FF\Services\Sessions\Exceptions\SessionException;
 
 /**
  * Class EventBroker
@@ -42,7 +42,7 @@ use FF\Sessions\Session\Exceptions\SessionException;
  *  - session.name  : string (default: 'PHPSESSID')     - name of the session cookie,
  *                                                        should only contain alphanumeric characters
  *
- * If your project solely uses a secure (SSL) https web interface, you should active the secure cookie option:
+ * If your project solely uses a secure (SSL) https web interface, you should activate the secure cookie option:
  *  - session.cookie_secure  : bool (default: false)    - whether cookies should only be sent over secure connection
  *
  * Do not set session.auto_start. Always call Session::start() explicitly on your demand.
@@ -54,7 +54,7 @@ use FF\Sessions\Session\Exceptions\SessionException;
  */
 class Session extends AbstractService
 {
-    const ENHANCED_CONFIG_DEFAULTS = [
+    const array ENHANCED_CONFIG_DEFAULTS = [
         'session.use_strict_mode' => '1',
         'session.cookie_httponly' => '1'
     ];
@@ -113,7 +113,7 @@ class Session extends AbstractService
      * @throws SessionException error while registering session save handler
      * @see http://php.net/session_set_save_handler
      */
-    public function setSaveHandler(\SessionHandlerInterface $sessionHandler, $registerShutdown = true)
+    public function setSaveHandler(\SessionHandlerInterface $sessionHandler, bool $registerShutdown = true)
     {
         if ($this->isActive()) {
             return $this;
@@ -194,7 +194,7 @@ class Session extends AbstractService
      * @throws SessionException error while regenerating session id
      * @see http://php.net/session_regenerate_id
      */
-    public function regenerate($deleteOldSession = true)
+    public function regenerate(bool $deleteOldSession = true)
     {
         if (!$this->isActive()) {
             return $this;
@@ -286,7 +286,7 @@ class Session extends AbstractService
      * @param mixed $value
      * @return $this
      */
-    public function set(string $key, $value)
+    public function set(string $key, mixed $value)
     {
         $_SESSION[$key] = $value;
         return $this;
@@ -310,11 +310,11 @@ class Session extends AbstractService
      *
      * If $key is set, only the value using the $key is unset.
      *
-     * @param string $key
+     * @param string|null $key
      * @return $this
      * @see http://php.net/session_unset
      */
-    public function unset(string $key = null)
+    public function unset(?string $key = null)
     {
         if (is_null($key)) {
             session_unset();
@@ -354,7 +354,7 @@ class Session extends AbstractService
             $this->setSaveHandler($sessionHandler);
         } catch (ClassNotFoundException | ConfigurationException $exception) {
             $errors[] = 'unable to retrieve [' . $options['custom_handler'] . '] from the service factory - '
-                . '[' . (string)$exception . ']';
+                . '[' . $exception . ']';
         }
 
         if (!empty($errors)) {
@@ -368,10 +368,10 @@ class Session extends AbstractService
      * @param array $options
      * @param array $errors
      */
-    protected function configureSessionModule(array $options, array $errors)
+    protected function configureSessionModule(array $options, array &$errors)
     {
         foreach ($options as $key => $value) {
-            if (substr($key, 0, 8) != 'session.') {
+            if (!str_starts_with($key, 'session.')) {
                 continue;
             }
 

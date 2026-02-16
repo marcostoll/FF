@@ -27,12 +27,12 @@ class EventBroker extends AbstractService
     /**
      * @var IndexedCollection
      */
-    protected $subscriptions;
+    protected IndexedCollection $subscriptions;
 
     /**
      * @var EventsFactory
      */
-    protected $eventsFactory;
+    protected EventsFactory $eventsFactory;
 
     /**
      * {@inheritDoc}
@@ -113,10 +113,10 @@ class EventBroker extends AbstractService
      * If $name is omitted, the listener will be unsubscribed from each event it was subscribed to.
      *
      * @param callable $listener
-     * @param string $classIdentifier
+     * @param string|null $classIdentifier
      * @return $this
      */
-    public function unsubscribe(callable $listener, string $classIdentifier = null)
+    public function unsubscribe(callable $listener, ?string $classIdentifier = null)
     {
         /** @var OrderedCollection $listenerCollection */
         foreach ($this->subscriptions as $name => $listenerCollection) {
@@ -234,7 +234,7 @@ class EventBroker extends AbstractService
     {
         try {
             return $this->eventsFactory->create($classIdentifier, ...$args);
-        } catch (ClassNotFoundException $e) {
+        } catch (ClassNotFoundException) {
             return null;
         }
     }
