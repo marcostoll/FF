@@ -22,9 +22,9 @@ use FF\Factories\ClassLocators\ClassLocatorInterface;
 class ControllersFactory extends AbstractSingletonFactory
 {
     /**
-     * @var ControllersFactory
+     * @var ControllersFactory|null
      */
-    protected static ControllersFactory $instance;
+    protected static ?ControllersFactory $instance = null;
 
     /**
      * Declared protected to prevent external usage.
@@ -70,7 +70,7 @@ class ControllersFactory extends AbstractSingletonFactory
      * {@inheritdoc}
      * @return AbstractController
      */
-    public function create(string $classIdentifier, ...$args)
+    public function create(string $classIdentifier, ...$args): object
     {
         /** @var AbstractController $controller */
         $controller = parent::create($classIdentifier, ...$args);

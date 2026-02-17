@@ -26,7 +26,7 @@ class ServicesFactory extends AbstractSingletonFactory
     /**
      * @var ServicesFactory|null
      */
-    protected static ?ServicesFactory $instance;
+    protected static ?ServicesFactory $instance = null;
 
     /**
      * @var array
@@ -107,7 +107,7 @@ class ServicesFactory extends AbstractSingletonFactory
      * {@inheritdoc}
      * @return AbstractService
      */
-    public function create(string $classIdentifier, ...$args)
+    public function create(string $classIdentifier, ...$args): object
     {
         /** @var AbstractService $service */
         $service = parent::create($classIdentifier, ...$args);

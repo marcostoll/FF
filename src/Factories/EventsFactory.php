@@ -22,9 +22,9 @@ use FF\Factories\ClassLocators\ClassLocatorInterface;
 class EventsFactory extends AbstractFactory
 {
     /**
-     * @var EventsFactory
+     * @var EventsFactory|null
      */
-    protected static EventsFactory $instance;
+    protected static ?EventsFactory $instance = null;
 
     /**
      * Declared protected to prevent external usage.
@@ -71,7 +71,7 @@ class EventsFactory extends AbstractFactory
      * {@inheritdoc}
      * @return AbstractEvent
      */
-    public function create(string $classIdentifier, ...$args)
+    public function create(string $classIdentifier, ...$args): object
     {
         /** @var AbstractEvent $event */
         $event = parent::create($classIdentifier, ...$args);

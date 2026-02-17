@@ -20,9 +20,9 @@ use FF\DataStructures\Record;
 class Registry extends Record
 {
     /**
-     * @var Registry
+     * @var Registry|null
      */
-    protected static Registry $instance;
+    protected static ?Registry $instance = null;
 
     /**
      * Retrieves the singleton instance of this class
