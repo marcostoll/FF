@@ -112,7 +112,7 @@ class Dispatcher extends AbstractService
         // fill-in args in route's path
         $path = $route->getPath();
         foreach ($namedArgs as $key => $value) {
-            $path = str_replace('{' . $key . '}', $value, $path);
+            $path = str_replace('{' . $key . '}', (string)$value, $path);
         }
 
         // strip unfilled args from end of path
